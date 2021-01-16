@@ -18,13 +18,13 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 宇*</a >
+            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 语*</a >
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px"class="active"><a href="#">首页</a></li>
+                <li style="margin-left: 50px"class="active"><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
             </ul>
 
             <form class="navbar-form navbar-left" role="search">

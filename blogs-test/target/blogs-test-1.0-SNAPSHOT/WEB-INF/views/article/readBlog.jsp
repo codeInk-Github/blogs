@@ -26,26 +26,45 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 宇*</a >
+            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 语*</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px"><a href="#">首页</a></li>
+                <li style="margin-left: 50px" class="active"><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
             </ul>
 
-            <form class="navbar-form navbar-left" role="search">
-
+            <form class="navbar-form navbar-collapse" role="search">
                 <div class="form-group">
-                    <input style="margin-left: 900px"type="text" class="form-control" placeholder="更多" name="search">
+                    <input style="margin-left: 800px" type="text" class="form-control" placeholder="更多" name="search">
                 </div>
 
-                <button type="submit"  class="btn btn-default">搜索</button>
+                <button type="submit" class="btn btn-default">搜索</button>
+                <c:if test="${empty username}">
+                    <ul class="nav navbar-nav navbar-right" id="logAndReg">
+                        <li><a href="${pageContext.request.contextPath}/login.jsp">登录</a>
+                    </ul>
+                    <br><br>
+                </c:if>
+                <c:if test="${!empty username}">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="${pageContext.request.contextPath}/static/css/images/user.png"  height="20" />
+                                    ${username}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href='#'>资料修改</a>
+                                <li><a href="${pageContext.request.contextPath}/user/${username}">我的博客</a>
+                                <li><a href="#">我的收藏</a>
+                                <li><a href="#">我的粉丝</a>
+                                <li><a href="${pageContext.request.contextPath}/logout" >退出</a>
+                            </ul>
+                    </ul>
+                </c:if>
             </form>
-            <ul class="nav navbar-nav">
-                <li style="margin-left: 20px"><a href="#">登录</a></li>
-            </ul>
         </div>
     </div>
 </nav>
@@ -60,13 +79,12 @@
             <div class="panel-body">
                 <div id="markdown-editor">
                     <!-- 编辑器的内容 START -->
-                    <textarea id="content2" style="display:none;">
-                        ${blog_content.blogContext}
+                    <textarea id="content2" style="display:none;">${blog_content.blogContext}
                     </textarea>
                     <!-- 编辑器的内容 END -->
-                    <button class="btn btn-info" style="margin-left: 800px">收藏</button>
-                    <button class="btn btn-warning" >关注</button>
                 </div>
+                <button class="btn btn-info" style="margin-left: 800px">收藏</button>
+                <button class="btn btn-warning" >关注</button>
 
             </div>
 
@@ -81,8 +99,13 @@
                     <c:set var = "index" scope = "request" value="${index+1}" />
                     <ul class="list-group">
                         <li class="list-group-item">
+                            第${index}楼
                             <c:if test="${c.commenterId==creator_info.username}">作者</c:if>
-                            第${index}楼 ${c.commenterName} ${c.commentTime}<br><br>${c.commentContext}
+                            <a href="${pageContext.request.contextPath}/user/${c.commenterId}">
+                                    ${c.commenterName}
+                            </a>${c.commentTime}
+                            <a style="float: right" href="#">删除</a>
+                            <br><br>${c.commentContext}
                         </li>
                     </ul>
                 </c:forEach>
@@ -141,6 +164,19 @@
 <script src="${pageContext.request.contextPath}/static/editor.md/editormd.js"></script>
 
 <script>
+        $(document).ready(function () {
+        dropdownOpen();
+    });
+
+        function dropdownOpen() {
+        var $dropdownli = $('li.dropdown');
+        $dropdownli.mousemove(function () {
+        $(this).addClass('open');
+    }).mouseout(function () {
+        $(this).removeClass('open');
+    });
+    };
+
     let mkEditor
     $(function (){
             mkEditor = editormd.markdownToHTML("markdown-editor", {

@@ -50,13 +50,14 @@ public class BlogController {
         List<Comments> comments = blogService.queryCommentsAsList(blogId);
         User user = userService.getUserByUserName(blogs.getCreator());
         List<Blogs> blog_recent = blogService.queryBlogsAsListByCreatorSortByTime(user.getUsername());
+        model.addAttribute("blog_recent",blog_recent);
+
         // System.out.println(comments.toString());
         // System.out.println(blogs.toString());
         // System.out.println(blogs);
         model.addAttribute("blog_content",blogs);
         model.addAttribute("blog_comment",comments);
         model.addAttribute("creator_info",user);
-        model.addAttribute("blog_recent",blog_recent);
         return "article/readBlog";
     }
 

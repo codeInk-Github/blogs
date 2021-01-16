@@ -57,8 +57,8 @@
                     <li></li>
                     <li></li>
                     <br>
-                    <li><a href="${pageContext.request.contextPath}/post/create">写博客</a></li>
-                    <li><a href="#">草稿箱</a></li>
+                    <li class="write"><a href="${pageContext.request.contextPath}/post/create">  <img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
+                    <li class="draft"><a href="${pageContext.request.contextPath}/user/${username}/drafts">  <img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
                     <li><a href="#">资料修改</a></li>
                     <li><a href="#">我的收藏</a></li>
                     <li><a href="#">我的评论</a></li>
@@ -74,10 +74,10 @@
                     <c:forEach items="${blogs_list}" var="c">
                         <ul class="list-group" >
                             <div class="list-group-item">
-                                <a href="#" style="color:black">
+                                <a href="${pageContext.request.contextPath}/a/${c.blogId}" style="color:black">
                                     <h3 > ${c.blogTitle} </h3>
                                 </a>
-                                <h4 class="list-group-item-heading" style="color:black">${c.blogContext}</h4>   <br>
+                                <h4 class="list-group-item-heading" style="color:black">${c.blogContext}</h4>
                                 <a href="#" style="float: right">编辑</a>
                                 <p  style="float: right;margin-right: 50px">
                                     &nbsp;评论量:&nbsp;${c.commentNums}:</p>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="panel-body">
                             <c:forEach var="c" items="${blog_recent}">
-                                <li><a href="#">${c.blogTitle}</a></li>
+                                <li><a href="${pageContext.request.contextPath}/a/${c.blogId}">${c.blogTitle}</a></li>
                             </c:forEach>
                         </div>
                     </div>

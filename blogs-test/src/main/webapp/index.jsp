@@ -29,18 +29,18 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 宇*</a>
+            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 语*</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" class="active"><a href="#">首页</a></li>
+                <li style="margin-left: 50px" class="active"><a href="index.jsp">首页</a></li>
             </ul>
 
             <form class="navbar-form navbar-collapse" role="search">
                 <div class="form-group">
-                    <input style="margin-left: 900px" type="text" class="form-control" placeholder="更多" name="search">
+                    <input style="margin-left: 800px" type="text" class="form-control" placeholder="更多" name="search">
                 </div>
 
                 <button type="submit" class="btn btn-default">搜索</button>
@@ -53,13 +53,14 @@
                 <c:if test="${!empty username}">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <button href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    ${username}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="static/css/images/user.png"  height="20" />
+                                 ${username}
                                 <span class="caret"></span>
-                            </button>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href='#'>资料修改</a>
-                                <li><a href="#">我的博客</a>
+                                <li><a href="${pageContext.request.contextPath}/user/${username}">我的博客</a>
                                 <li><a href="#">我的收藏</a>
                                 <li><a href="#">我的粉丝</a>
                                 <li><a href="${pageContext.request.contextPath}/logout" >退出</a>
@@ -168,10 +169,7 @@
     };
 
 </script>
-<script>
 
-
-</script>
 </body>
 </html>
 

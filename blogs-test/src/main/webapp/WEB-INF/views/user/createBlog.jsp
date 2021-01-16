@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
     <!-- 引入editormd样式文件 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/editor.md/css/editormd.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/login.css"/>
     <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js" ></script>
@@ -19,14 +20,14 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 宇*</a >
+            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 语*</a >
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="#">首页</a></li>
-                <li ><a href="#">我的文章 </a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/user/${username}">我的文章 </a></li>
                 <li><a href="#">个人信息</a></li>
 
             </ul>
@@ -45,8 +46,8 @@
         <li></li>
         <li></li>
         <br>
-        <li class="active"><a href="${pageContext.request.contextPath}/post/create">写博客</a></li>
-        <li><a href="#">草稿箱</a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/post/create"><img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/${username}/drafts"><img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
         <li ><a href="#">资料修改</a></li>
         <li><a href="#">我的收藏</a></li>
         <li><a href="#">我的评论</a></li>

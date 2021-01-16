@@ -45,8 +45,8 @@
         <li></li>
         <li></li>
         <br>
-        <li class="active"><a href="${pageContext.request.contextPath}/post/create">写博客</a></li>
-        <li><a href="#">草稿箱</a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/post/create"><img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
+        <li><a href="#">  <img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
         <li ><a href="#">资料修改</a></li>
         <li><a href="#">我的收藏</a></li>
         <li><a href="#">我的评论</a></li>

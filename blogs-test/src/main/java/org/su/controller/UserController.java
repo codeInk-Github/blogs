@@ -71,6 +71,8 @@ public class UserController {
 
     @RequestMapping("/user/{creator}")
     public String menu(HttpSession session, Model model, @PathVariable String creator) throws IOException {
+        List<Blogs> blog_recent = blogService.queryBlogsAsListByCreatorSortByTime(creator);
+        model.addAttribute("blog_recent",blog_recent);
         User user = userService.getUserByUserName(creator);
         model.addAttribute("blogger",user);
         // List<Blogs> blogs = blogService.queryBlogsAsListByCreatorSortByTime(username);
@@ -116,7 +118,14 @@ public class UserController {
     public String loggout(HttpSession session, HttpServletRequest request) throws IOException {
        session.invalidate();
         String path = request.getContextPath();
-        return path+"/index.jsp";
+        System.out.println(path);
+        return "../index.jsp";
+    }
+
+    @RequestMapping("/user/{username}/drafts")
+    public String drafts(@PathVariable String username, HttpServletRequest request) throws IOException {
+
+        return "user/drafts";
     }
 
 }

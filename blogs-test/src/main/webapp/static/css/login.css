@@ -112,3 +112,15 @@ form p > * {
     border: 0;
     border-radius: 15px;
 }
+.dropdown-toggle img{
+    margin-bottom: -3px;
+    margin-right: 5px;
+}
+.write img{
+    margin-bottom: -3px;
+    margin-right: 5px;
+}
+.draft img{
+    margin-bottom: -3px;
+    margin-right: 5px;
+}
