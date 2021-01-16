@@ -100,11 +100,18 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             第${index}楼
-                            <c:if test="${c.commenterId==creator_info.username}">作者</c:if>
-                            <a href="${pageContext.request.contextPath}/user/${c.commenterId}">
-                                    ${c.commenterName}
-                            </a>${c.commentTime}
-                            <a style="float: right" href="#">删除</a>
+                            <c:if test="${c.annoy==1}">
+                                <c:if test="${c.commenterId==creator_info.username}">作者</c:if>
+                                <a  href="${pageContext.request.contextPath}/user/${c.commenterId}" id="${c.commentId}">
+                                        ${c.commenterName}
+                                </a>
+                            </c:if>
+                            <c:if test="${c.annoy==0}">
+                                        "匿名"
+                            </c:if>
+                                ${c.commentTime}
+<%--                            <a style="float: right" href="${pageContext.request.contextPath}/comment/delete/${c.commentId}" class="comment-delete">删除</a>--%>
+                            <a style="float: right" href="#" id="${c.commentId}" class="comment-delete">删除</a>
                             <br><br>${c.commentContext}
                         </li>
                     </ul>
@@ -189,48 +196,58 @@
         });
     })
     $(function (){
-
-
         $('#btn-comment').click(function (){
-            alert($("input[name='annoy']:checked").val())
-            <%--if (""=== $('#text-comment').val())--%>
-            <%--    alert("不能提交空白评论")--%>
-            <%--else{--%>
-            <%--    $.ajax({--%>
-            <%--        url: "${pageContext.request.contextPath}/c/${blog_content.blogId}",--%>
-            <%--        type: "POST",--%>
-            <%--        data: {--%>
-            <%--            text_comment: $("#text-comment").val(),--%>
-            <%--            annoy:$("#check-annoy").attr('checked')--%>
-            <%--        },--%>
-            <%--        dataType : 'json',--%>
-            <%--        success:function (data){--%>
-            <%--            console.log(data);--%>
-            <%--            if("ok"===data.msg){--%>
-            <%--              --%>
-            <%--                window.location.reload()--%>
-            <%--                $("#comment-div").scrollIntoView(true);--%>
+            // alert($("input[name='annoy']:checked").val())
+            if (""=== $('#text-comment').val())
+                alert("不能提交空白评论")
+            else{
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/c/${blog_content.blogId}",
+                    type: "POST",
+                    data: {
+                        text_comment: $("#text-comment").val(),
+                        annoy:$("input[name='annoy']:checked").val()
+                    },
+                    dataType : 'json',
+                    success:function (data){
+                        console.log(data);
+                        if("ok"===data.msg){
 
-            <%--                // console.log(data);--%>
-            <%--                // console.log(data.comment);--%>
-            <%--                &lt;%&ndash;                            ${blog_comment} ;&ndash;%&gt;--%>
-            <%--                &lt;%&ndash;                            ${blog_comment}.load(data.comment);&ndash;%&gt;--%>
-            <%--                // console.log("点击!!"+$('#text-comment').val());--%>
-            <%--                // console.log($('#check-annoy').attr('checked'));--%>
-            <%--            }--%>
-            <%--            else {--%>
-            <%--                alert("未登录!")--%>
-            <%--                window.location.href='${pageContext.request.contextPath}/login.jsp';--%>
-            <%--            }--%>
-            <%--            &lt;%&ndash;window.location.href='${pageContext.request.contextPath}/home'&ndash;%&gt;--%>
-            <%--        },--%>
-            <%--        error:function (){--%>
-            <%--            alert("error")--%>
-            <%--        }--%>
-            <%--    })--%>
-            // }
+                            window.location.reload()
+                            $("#comment-div").scrollIntoView(true);
+
+                            // console.log(data);
+                            // console.log(data.comment);
+                            <%--                            ${blog_comment} ;--%>
+                            <%--                            ${blog_comment}.load(data.comment);--%>
+                            // console.log("点击!!"+$('#text-comment').val());
+                            // console.log($('#check-annoy').attr('checked'));
+                        }
+                        else {
+                            alert("未登录!")
+                            window.location.href='${pageContext.request.contextPath}/login.jsp';
+                        }
+                        <%--window.location.href='${pageContext.request.contextPath}/home'--%>
+                    },
+                    error:function (){
+                        alert("error")
+                    }
+                })
+            }
         })
-    })
+        $('.comment-delete').click(function() {
+            console.log($(this).attr('id'));
+            var id =$(this).attr('id')
+            $.ajax({
+                url:"${pageContext.request.contextPath}/comment/delete/${c.commentId}/"+id,
+                dataType: "json",
+                success:function (){
+                    window.location.reload()
+                }
+            })
+        })
+    });
+
 </script>
 </body>
 </html>

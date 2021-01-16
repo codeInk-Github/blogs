@@ -7,7 +7,7 @@
     </insert>
 
 
-    <delete id="deleteByCommentId">
+    <delete id="deleteByCommentId" >
         delete from blogtest.comments where commentId=#{commentId}
     </delete>
 

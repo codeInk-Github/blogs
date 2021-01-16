@@ -143,7 +143,7 @@ public class BlogController {
         return jsonObject;
     }
 
-    @RequestMapping("/comment/{commentId}")
+    @RequestMapping("/comment/delete/{commentId}")
     @ResponseBody
     public JSONObject deleteComment(@PathVariable int commentId){
         JSONObject jsonObject = new JSONObject();

@@ -100,9 +100,9 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             第${index}楼
-                            <c:if test="${c.commenterId==creator_info.username}">作者</c:if>
                             <c:if test="${c.annoy==1}">
-                                <a href="${pageContext.request.contextPath}/user/${c.commenterId}">
+                                <c:if test="${c.commenterId==creator_info.username}">作者</c:if>
+                                <a  href="${pageContext.request.contextPath}/user/${c.commenterId}" id="${c.commentId}">
                                         ${c.commenterName}
                                 </a>
                             </c:if>
@@ -110,7 +110,8 @@
                                         "匿名"
                             </c:if>
                                 ${c.commentTime}
-                            <a style="float: right" href="${pageContext.request.contextPath}/comment/${c.commentId}">删除</a>
+<%--                            <a style="float: right" href="${pageContext.request.contextPath}/comment/delete/${c.commentId}" class="comment-delete">删除</a>--%>
+                            <a style="float: right" href="#" id="${c.commentId}" class="comment-delete">删除</a>
                             <br><br>${c.commentContext}
                         </li>
                     </ul>
@@ -195,8 +196,6 @@
         });
     })
     $(function (){
-
-
         $('#btn-comment').click(function (){
             // alert($("input[name='annoy']:checked").val())
             if (""=== $('#text-comment').val())
@@ -236,7 +235,19 @@
                 })
             }
         })
-    })
+        $('.comment-delete').click(function() {
+            console.log($(this).attr('id'));
+            var id =$(this).attr('id')
+            $.ajax({
+                url:"${pageContext.request.contextPath}/comment/delete/${c.commentId}/"+id,
+                dataType: "json",
+                success:function (){
+                    window.location.reload()
+                }
+            })
+        })
+    });
+
 </script>
 </body>
 </html>
