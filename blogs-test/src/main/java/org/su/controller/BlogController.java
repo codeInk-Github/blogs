@@ -111,7 +111,7 @@ public class BlogController {
 
     @RequestMapping("/c/{blogId}")
     @ResponseBody
-    public JSONObject post(@RequestParam("text_comment") String text_comment,
+    public JSONObject post(@RequestParam("text_comment") String text_comment,@RequestParam("annoy") String annoy_view,
                            @PathVariable int blogId,HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
         JSONObject jsonObject = new JSONObject();
         String username = (String) session.getAttribute("username");
@@ -126,7 +126,12 @@ public class BlogController {
             System.out.println(Path+"/login.jsp");
             jsonObject.put("msg","notLogged");
         }else{
+            if("yes".equals(annoy_view)){
+                blogService.addComment(new Comments(blogId,username,nickName,text_comment,0));
+
+            }else {
             blogService.addComment(new Comments(blogId,username,nickName,text_comment,1));
+            }
             List<Comments> comments = blogService.queryCommentsAsList(blogId);
             jsonObject.put("comments",comments);
             jsonObject.put("msg","ok");
