@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CommentsMapper {
 
-    int deleteByCommentId(String commentId);
+    int deleteByCommentId(int commentId);
 
     int insert(Comments comments);
 

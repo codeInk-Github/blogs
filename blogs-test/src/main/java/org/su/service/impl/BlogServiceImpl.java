@@ -75,7 +75,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int deleteComments(int comment_id) {
-        return 0;
+        return commentsMapper.deleteByCommentId(comment_id);
     }
 
     @Override

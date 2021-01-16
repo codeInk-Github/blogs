@@ -138,7 +138,17 @@ public class BlogController {
         return jsonObject;
     }
 
-
+    @RequestMapping("/comment/{commentId}")
+    @ResponseBody
+    public JSONObject deleteComment(@PathVariable int commentId){
+        JSONObject jsonObject = new JSONObject();
+        int i = blogService.deleteComments(commentId);
+        if(i!=0){
+            jsonObject.put("msg","ok");
+        }
+        else jsonObject.put("msg","fail");
+        return jsonObject;
+    }
 
 
 
