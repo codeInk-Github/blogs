@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.su.mapper.CommentsMapper" >
+    <insert id="insert">
+        insert into blogtest.comments (blogId, commenterId, commenterName, commentTime, commentContext, annoy)
+        values (#{blogId},#{commenterId},#{commenterName},#{commentTime},#{commentContext},#{annoy})
+    </insert>
+
+
+    <delete id="deleteByCommentId">
+        delete from blogtest.comments where commentId=#{commentId}
+    </delete>
+
+    <select id="queryCommentsAsList" resultType="org.su.pojo.Comments">
+        select commentId, blogId, commenterId, commenterName, commentTime, commentContext, annoy
+        from blogtest.comments where blogId=#{blogId}
+    </select>
+</mapper>

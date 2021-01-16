@@ -1,0 +1,13 @@
+
+d
+java:S1192"IDefine a constant instead of duplicating this literal "username" 8 times.(éœë¾øÿÿÿÿ
+d
+java:S1192"IDefine a constant instead of duplicating this literal "password" 5 times.(…ˆíİşÿÿÿÿ
+k
+java:S1192L"UDefine a constant instead of duplicating this literal "../admin/manageUsers" 3 times.(îÁß
+¶
+java:S1598"ŸThis file "UserController.java" should be located in "org\su\controller" directory, not in "D:\projects\test\blogs\blogs-test\src\main\java\org,su\controller".(–—åÚ
+V	java:S125)"<This block of commented-out lines of code should be removed.(Êçµëûÿÿÿÿ
+V	java:S125f"<This block of commented-out lines of code should be removed.(†èˆıÿÿÿÿ
+V	java:S125m"<This block of commented-out lines of code should be removed.(†èˆıÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(ë»»ôûÿÿÿÿ

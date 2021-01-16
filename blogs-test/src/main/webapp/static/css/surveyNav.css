@@ -1,0 +1,22 @@
+iframe {
+    width: 100%;
+}
+.my-fluid{
+    width: 100%;
+}
+.my-nav-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3em;
+    background-color:#F2F2F2;
+    z-index: 1000;
+}
+.my-nav-content{
+    margin-top: 3em;
+    width: 100%
+}
+.myTabContent{
+    height: 750px;
+}

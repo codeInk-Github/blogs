@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.su.mapper.UserMapper">
+
+    <insert id="addUser">
+        insert into blogtest.user (username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime)
+        values (#{username},#{password},#{headPortrait},#{nickName},#{nickName},#{email},#{telephone},#{favourite},#{fans},#{question},#{answer},#{registerTime})
+    </insert>
+
+    <update id="updateUserByUserName">
+        update blogtest.user
+        set password = #{password},
+            headPortrait = #{headPortrait},
+            nickName = #{nickName},
+            email = #{email},
+            telephone = #{telephone},
+            favourite = #{favourite},
+            fans = #{fans},
+            question = #{question},
+            answer = #{answer},
+            registerTime = #{registerTime}
+        where username = #{username};
+    </update>
+
+    <delete id="removeUserByUserName">
+        delete from blogtest.user  where  username = #{username}
+    </delete>
+
+    <select id="getUser" resultType="org.su.pojo.User">
+        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        from blogtest.user
+        where username = #{username} and password = #{password}
+    </select>
+
+    <select id="queryAll" resultType="org.su.pojo.User">
+        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        from blogtest.user where true
+    </select>
+
+    <select id="getUserByUserName" resultType="org.su.pojo.User">
+        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        from blogtest.user where username=#{username}
+    </select>
+
+</mapper>

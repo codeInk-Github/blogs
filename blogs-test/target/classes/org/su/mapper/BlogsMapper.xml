@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.su.mapper.BlogsMapper" >
+
+    <insert id="addBlog">
+        insert into blogtest.blogs (blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
+        values (#{blogTitle},#{blogContext},#{likeNums},#{commentNums},#{creator},#{createTime},#{status});
+    </insert>
+    <update id="updateBlog">
+        update blogtest.blogs
+        set
+            blogTitle=#{blogTitle},
+            blogContext=#{blogContext},
+            likeNums=#{likeNums},
+            commentNums=#{commentNums},
+            creator=#{creator},
+            createTime=#{createTime},
+            status=#{status}
+        where blogId = #{blogId}
+    </update>
+    <delete id="deleteBlogByBlogId">
+        delete from blogtest.blogs where blogId=#{blogId}
+    </delete>
+
+    <select id="queryBlogsAsListSortByLikeNums" resultType="org.su.pojo.Blogs">
+        select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs order by likeNums desc limit 0,5;
+    </select>
+
+    <select id="queryBlogsAsListSortByCommentNums" resultType="org.su.pojo.Blogs">
+        select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs order by commentNums desc limit 0,5;
+    </select>
+
+    <select id="queryBlogsAsSelectionList" resultType="org.su.pojo.Blogs">
+        select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs order by (commentNums + likeNums) desc limit 0,5;
+    </select>
+
+    <select id="queryBlogsAsListByCreator" resultType="org.su.pojo.Blogs">
+        select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where creator=#{creator};
+    </select>
+    <select id="queryBlogsAsSingle" resultType="org.su.pojo.Blogs">
+        select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where blogId=#{blogId}
+    </select>
+    <select id="queryBlogsAsListByCreatorSortByTime" resultType="org.su.pojo.Blogs">
+        select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where creator=#{creator} order by createTime desc limit 0,5
+    </select>
+
+
+</mapper>

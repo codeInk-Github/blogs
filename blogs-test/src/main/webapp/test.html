@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor在线预览</title>
+    <style>
+        body{
+            margin-left: 20px;
+            margin-right: 30px;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+    <!-- 引入editormd的css -->
+    <link rel="stylesheet" href="static/editor.md/css/editormd.min.css" />
+</head>
+<body>
+<!-- 定义markDown插件挂载容器 START -->
+<div id="markdown-editor">
+    <!-- 编辑器的内容 START -->
+    <textarea id="content1" style="display:none;">
+
+    </textarea>
+        <!-- 编辑器的内容 END -->
+</div>
+<!-- 定义markDown插件挂载容器 END -->
+</body>
+
+<!-- 这里的引入顺序不能改变，先引入jquery，再引入 editormd，
+    否则可能报错 [ ReferenceError: Zepto is not defined ] [ ReferenceError: editormd is not defined ]  -->
+<script src="static/js/jquery.min.js"></script>
+
+<!-- 预览时需要引入marked.js，否则报错 [ ReferenceError: marked is not defined ] -->
+<script src="static/editor.md/lib/marked.min.js"></script>
+<!-- 预览时需要引入prettify.js，否则报错 [ ReferenceError: prettyPrint is not defined ] -->
+<script src="static/editor.md/lib/prettify.min.js"></script>
+
+<script src="static/editor.md/editormd.js"></script>
+
+<script>
+    let mkEditor
+    mkEditor = editormd.markdownToHTML("markdown-editor", {
+        htmlDecode      : "style,script,iframe",  // you can filter tags decode
+        emoji           : true,
+        taskList        : true,
+        tex             : true,  // 默认不解析
+        flowChart       : true,  // 默认不解析
+        sequenceDiagram : true,  // 默认不解析
+    });
+</script>
+</html>

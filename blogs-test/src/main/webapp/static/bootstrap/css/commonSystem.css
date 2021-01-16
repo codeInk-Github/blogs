@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+*{
+	
+}
+
+.bootstrap-table .table thead tr{
+	color:#fff;
+	background:#ffcc66;
+	font-size: 14px;
+}  
+
+.btn-primary {
+	background-color: #ff9933;
+}
+.btn-primary:hover {
+	background-color: #ff9933;
+}
+
+.modal-header {
+	background: #ff9933;
+	color: #fff;
+}
+
+.close {
+	color: #fff;
+	opacity: 1;
+}
+.modal-footer .btn-primary {
+	background-color: #ff9933;
+}
+.modal-footer .btn-primary:hover {
+	background-color: #ff9933;
+}
+.modal-dialog p{
+	font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+.modal-dialog .col-xs-12 input  ,.modal-dialog .col-md-12 input{
+	height: 25px;
+}
+.modal-footer button{
+	font-size: 16px;
+}
