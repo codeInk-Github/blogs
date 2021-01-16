@@ -42,7 +42,7 @@ public class UserController {
             session.setAttribute("nickName",user.getNickName());
             System.out.println("Login  success!");
             // req.getRequestDispatcher("/user/menu").forward(req,resp);
-            resp.sendRedirect("menu");
+            resp.sendRedirect(username);
         }
         else{
             resp.sendRedirect("../login.jsp");
@@ -69,14 +69,12 @@ public class UserController {
         return "/user/Menu";
     }
 
-    @RequestMapping("/user/{username}")
-    public String menu(HttpSession session, Model model, @PathVariable String username) throws IOException {
-        String username =(String) session.getAttribute("username");
-        String password =(String) session.getAttribute("password");
-        User user = userService.getUserByUserName(username);
+    @RequestMapping("/user/{creator}")
+    public String menu(HttpSession session, Model model, @PathVariable String creator) throws IOException {
+        User user = userService.getUserByUserName(creator);
         model.addAttribute("blogger",user);
         // List<Blogs> blogs = blogService.queryBlogsAsListByCreatorSortByTime(username);
-        List<Blogs> blogs = blogService.queryBlogsAsListByCreator(username);
+        List<Blogs> blogs = blogService.queryBlogsAsListByCreator(creator);
         for (Blogs b : blogs){
             if(b.getBlogContext().length()>30){
                 String blogContext = b.getBlogContext().substring(0,30);
