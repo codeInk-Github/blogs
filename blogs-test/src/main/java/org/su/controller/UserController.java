@@ -112,5 +112,11 @@ public class UserController {
         request.getSession().setAttribute("user",userTemp);
         response.sendRedirect("../user/info");
     }
+    @RequestMapping("/logout")
+    public String loggout(HttpSession session, HttpServletRequest request) throws IOException {
+       session.invalidate();
+        String path = request.getContextPath();
+        return path+"/index.jsp";
+    }
 
 }

@@ -62,7 +62,7 @@
                                 <li><a href="#">我的博客</a>
                                 <li><a href="#">我的收藏</a>
                                 <li><a href="#">我的粉丝</a>
-                                <li><a href="#">退出</a>
+                                <li><a href="${pageContext.request.contextPath}/logout" >退出</a>
                             </ul>
                     </ul>
                 </c:if>
@@ -165,7 +165,11 @@
         }).mouseout(function () {
             $(this).removeClass('open');
         });
-    }
+    };
+
+</script>
+<script>
+
 
 </script>
 </body>
