@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: zucker
@@ -23,18 +24,18 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 宇*</a >
+            <a class="navbar-brand" style="margin-left: 30px" href="#">*博 语*</a >
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="#">首页</a></li>
-                <li ><a href="#">我的文章 </a></li>
-                <li><a href="#">个人信息</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/home">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/user/${username}">我的文章 </a></li>
+                <li><a href="${pageContext.request.contextPath}/user/Info">个人信息</a></li>
 
             </ul>
-            <form class="navbar-form navbar-right" action="">
+            <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="搜索" name="search">
                 </div>
@@ -49,23 +50,21 @@
         <li></li>
         <li></li>
         <br>
-        <li ><a href="#">写博客</a></li>
-        <li ><a href="#">草稿箱</a></li>
-        <li ><a href="#">资料修改</a></li>
-        <li class="active"><a href="#">我的收藏</a></li>
-        <li><a href="#">我的评论</a></li>
-        <li><a href="#">我的粉丝</a></li>
-        <li><a href="#">我的关注</a></li>
+        <li ><a href="${pageContext.request.contextPath}/post/create"><img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
+        <li><a href="${pageContext.request.contextPath}/drafts"><img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/editInfo">资料修改</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/myFavourite">我的收藏</a></li>
+        <li  class="active"><a href="${pageContext.request.contextPath}/user/myComments">我的评论</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/followed">我的粉丝</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/following">我的关注</a></li>
         <li></li>
         <li></li>
     </ul>
 </div>
 <div class="col-md-7"  style="margin-left: 100px">
     <div class="panel panel-default">
-        <div class="panel-heading"  style="background: floralwhite">
-            <h3 class="panel-title">COMMENTS</h3>
-        </div>
         <div class="panel-body">
+            <h3>COMMENTS</h3>
             <table class="table" >
                 <tbody >
                 <tr>
@@ -73,14 +72,12 @@
                 <tr>
                     <th style="width: 600px">标题</th>
                     <th>日期</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
                 <c:forEach var="c" items="${commented_list}">
                     <tr style="background: floralwhite">
                         <td><a href="${pageContext.request.contextPath}/a/${c.blogId}" target="_blank"> ${c.blogTitle}</a></td>
                         <td>${c.createTime}</td>
-                        <td><a href="#">删除</a></td>
                     </tr>
                     <tr>
                         <td>${c.commentContext}</td>

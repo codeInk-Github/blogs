@@ -25,12 +25,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="#">首页</a></li>
-                <li ><a href="#">我的文章 </a></li>
-                <li><a href="#">个人信息</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/home">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/user/${username}">我的文章 </a></li>
+                <li><a href="${pageContext.request.contextPath}/user/Info">个人信息</a></li>
 
             </ul>
-            <form class="navbar-form navbar-right" action="/survey/querySurveyByTopic">
+            <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="搜索" name="search">
                 </div>
@@ -46,12 +46,12 @@
         <li></li>
         <br>
         <li class="active"><a href="${pageContext.request.contextPath}/post/create"><img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
-        <li><a href="#">  <img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
-        <li ><a href="#">资料修改</a></li>
-        <li><a href="#">我的收藏</a></li>
-        <li><a href="#">我的评论</a></li>
-        <li><a href="#">我的粉丝</a></li>
-        <li><a href="#">我的关注</a></li>
+        <li><a href="${pageContext.request.contextPath}/drafts">  <img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/editInfo">资料修改</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/myFavourite">我的收藏</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/myComments">我的评论</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/followed">我的粉丝</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/following">我的关注</a></li>
         <li></li>
         <li></li>
     </ul>

@@ -49,6 +49,13 @@
         select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where creator=#{creator} order by createTime desc limit 0,5
     </select>
+    <select id="queryBlogTitle" resultType="java.lang.String">
+        select blogTitle from blogtest.blogs where blogId=#{blogId}
+    </select>
+    <select id="queryBlogsAsListSearched" resultType="org.su.pojo.Blogs">
+        select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where blogTitle LIKE CONCAT(CONCAT('%',#{search},'%'))
+    </select>
 
 
 </mapper>

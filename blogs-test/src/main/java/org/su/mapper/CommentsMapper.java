@@ -11,4 +11,7 @@ public interface CommentsMapper {
     int insert(Comments comments);
 
     List<Comments> queryCommentsAsList(int blogId);
+
+    List<Comments> queryCommentsAsListBycommenterId(String username);
+
 }

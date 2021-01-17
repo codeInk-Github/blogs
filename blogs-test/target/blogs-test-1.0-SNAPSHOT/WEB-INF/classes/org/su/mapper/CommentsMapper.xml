@@ -15,4 +15,8 @@
         select commentId, blogId, commenterId, commenterName, commentTime, commentContext, annoy
         from blogtest.comments where blogId=#{blogId}
     </select>
+    <select id="queryCommentsAsListBycommenterId" resultType="org.su.pojo.Comments">
+        select commentId, blogId, commenterId, commenterName, commentTime, commentContext, annoy
+        from blogtest.comments where commenterId=#{username}
+    </select>
 </mapper>

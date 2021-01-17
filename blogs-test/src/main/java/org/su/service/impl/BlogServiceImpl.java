@@ -4,10 +4,12 @@ import org.su.mapper.BlogsMapper;
 import org.su.mapper.CommentsMapper;
 import org.su.mapper.FavouriteMapper;
 import org.su.pojo.Blogs;
+import org.su.pojo.CommentedBlogs;
 import org.su.pojo.Comments;
 import org.su.service.BlogService;
 import org.su.utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlogServiceImpl implements BlogService {
@@ -84,8 +86,45 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<CommentedBlogs> queryCommentsAsListByCommenterId(String username) {
+        ArrayList<CommentedBlogs> commentedBlogs = new ArrayList<>();
+        List<Comments> commentsList = commentsMapper.queryCommentsAsListBycommenterId(username);
+        for(Comments comment: commentsList){
+            commentedBlogs.add(new CommentedBlogs(comment.getBlogId(),blogsMapper.queryBlogTitle(comment.getBlogId()),comment.getCommentTime(),comment.getCommentContext()));
+        }
+        return commentedBlogs;
+    }
+
+    @Override
     public List<Blogs> queryBlogsAsListByCreatorSortByTime(String creator) {
         return blogsMapper.queryBlogsAsListByCreatorSortByTime(creator);
+    }
+
+    @Override
+    public List<Blogs> queryMyFavouriteBlogs(String username) {
+        List<Integer> blogsId = favouriteMapper.getBlogsId(username);
+        List<Blogs> blogsList = new ArrayList<Blogs>();
+
+        for (Integer i:blogsId){
+            blogsList.add(blogsMapper.queryBlogsAsSingle(i));
+        }
+        return blogsList;
+    }
+
+    @Override
+    public List<Blogs> queryDraftBlogsAsListByCreator(String username) {
+        List<Blogs> blogs = blogsMapper.queryBlogsAsListByCreator(username);
+        List<Blogs> blog_list = new ArrayList<Blogs>();
+        for(Blogs blog: blogs){
+            if(blog.getStatus()==0)
+                blog_list.add(blog);
+        }
+        return blog_list;
+    }
+
+    @Override
+    public List<Blogs> queryBlogsAsListSearched(String search) {
+        return blogsMapper.queryBlogsAsListSearched(search);
     }
 
 

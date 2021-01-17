@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.su.pojo.Blogs;
+import org.su.pojo.CommentedBlogs;
+import org.su.pojo.Comments;
 import org.su.pojo.User;
 import org.su.service.BlogService;
 import org.su.service.UserService;
@@ -40,6 +42,7 @@ public class UserController {
             session.setAttribute("username",username);
             session.setAttribute("password",password);
             session.setAttribute("nickName",user.getNickName());
+            session.setAttribute("user",user);
             System.out.println("Login  success!");
             // req.getRequestDispatcher("/user/menu").forward(req,resp);
             resp.sendRedirect(username);
@@ -101,31 +104,63 @@ public class UserController {
         resp.sendRedirect("../login.jsp");
     }
 
-    @RequestMapping("/user/update")
-    public void updateUserInfo(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        System.out.println("修改用户信息");
-        User user = (User) request.getSession().getAttribute("user");
-        user.setNickName((String) request.getParameter("nickname"));
-        user.setTelephone((String) request.getParameter("telePhone"));
-        user.setEmail((String) request.getParameter("email"));
-        userService.updateUserByUserName(user);
-        User userTemp = userService.getUser(user.getUsername(),user.getPassword());
-        request.getSession().removeAttribute("user");
-        request.getSession().setAttribute("user",userTemp);
-        response.sendRedirect("../user/info");
-    }
     @RequestMapping("/logout")
     public String loggout(HttpSession session, HttpServletRequest request) throws IOException {
        session.invalidate();
         String path = request.getContextPath();
         System.out.println(path);
-        return "../index.jsp";
+        return "./../index.jsp";
     }
 
-    @RequestMapping("/user/{username}/drafts")
-    public String drafts(@PathVariable String username, HttpServletRequest request) throws IOException {
 
-        return "user/drafts";
+    @RequestMapping("/user/Info")
+    public String userInfo(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
+        return "user/userInfo";
     }
+
+
+    @RequestMapping("/user/editInfo")
+    public String editInfo(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
+        return "user/modifyInfo";
+    }
+
+    @RequestMapping("/user/myComments")
+    public String myComments(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        List<CommentedBlogs> commented_list = blogService.queryCommentsAsListByCommenterId(username);
+        model.addAttribute("commented_list",commented_list);
+        return "user/myComments";
+    }
+    @RequestMapping("/user/myFavourite")
+    public String myFavourite(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        List<Blogs> blogs = blogService.queryMyFavouriteBlogs(username);
+        model.addAttribute("favourite_blogs",blogs);
+        return "user/myFavourite";
+    }
+
+    @RequestMapping("/user/following")
+    public String following(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        List<User> userList = userService.queryFollowingBloggers(username);
+        model.addAttribute("following_list",userList);
+        return "user/myFollowing";
+    }
+
+    @RequestMapping("/user/followed")
+    public String followed(HttpSession session, Model model){
+        String username = (String) session.getAttribute("username");
+        List<User> userList = userService.queryFollowedBloggers(username);
+        model.addAttribute("followed_list",userList);
+        return "user/followingMe";
+    }
+
+
 
 }

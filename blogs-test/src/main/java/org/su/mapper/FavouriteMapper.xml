@@ -7,4 +7,7 @@
     <select id="countNumsByBlogId" resultType="java.lang.Integer">
 
     </select>
+    <select id="getBlogsId" resultType="java.lang.Integer">
+        select username from blogtest.favourite where username=#{username}
+    </select>
 </mapper>

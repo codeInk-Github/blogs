@@ -41,4 +41,9 @@ public interface UserService{
      * @return
      */
     public List<User> queryAll();
+
+    List<User> queryFollowingBloggers(String username);
+
+    List<User> queryFollowedBloggers(String username);
+
 }

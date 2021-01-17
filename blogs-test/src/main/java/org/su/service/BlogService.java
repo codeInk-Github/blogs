@@ -1,6 +1,7 @@
 package org.su.service;
 
 import org.su.pojo.Blogs;
+import org.su.pojo.CommentedBlogs;
 import org.su.pojo.Comments;
 
 import java.util.List;
@@ -29,6 +30,13 @@ public interface BlogService {
 
     List<Comments> queryCommentsAsList(int blogId);
 
+    List<CommentedBlogs> queryCommentsAsListByCommenterId(String username);
+
     List<Blogs> queryBlogsAsListByCreatorSortByTime(String creator);
 
+    List<Blogs> queryMyFavouriteBlogs(String username);
+
+    List<Blogs> queryDraftBlogsAsListByCreator(String username);
+
+    List<Blogs> queryBlogsAsListSearched(String search);
 }

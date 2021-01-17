@@ -1,6 +1,7 @@
 package org.su.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class BlogController {
         model.addAttribute("blog_content",blogs);
         model.addAttribute("blog_comment",comments);
         model.addAttribute("creator_info",user);
-        return "article/readBlog";
+        return "share/readBlog";
     }
 
     @RequestMapping("/post/create")
@@ -155,6 +156,20 @@ public class BlogController {
         return jsonObject;
     }
 
+    @RequestMapping("/draft")
+    public String draft(HttpSession session, Model model){
+        String username =(String) session.getAttribute("username");
+        List<Blogs> blogs = blogService.queryDraftBlogsAsListByCreator(username);
+        model.addAttribute("drafts_list",blogs);
+        return "user/drafts";
+    }
+    @RequestMapping("/search")
+    public String search(Model model ,String search){
+        List<Blogs> blogs = blogService.queryBlogsAsListSearched(search);
+        model.addAttribute("blogs_searched",blogs);
+        return "/share/search";
+
+    }
 
 
 
