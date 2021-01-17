@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.su.mapper.FollowersMapper" >
+    <insert id="addFollowRecord">
+        insert into blogtest.followers(bloggerId, fansId) VALUES (#{bloggerId},#{fansId})
+    </insert>
 
     <select id="queryFollowingBloggers" resultType="java.lang.String">
         select bloggerId from blogtest.followers where fansId=#{username}

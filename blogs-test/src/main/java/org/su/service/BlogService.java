@@ -41,4 +41,6 @@ public interface BlogService {
     List<Blogs> queryBlogsAsListSearched(String search);
 
     int addFavourite(int blogId, String username);
+
+    int updateBlogs(Blogs blog);
 }

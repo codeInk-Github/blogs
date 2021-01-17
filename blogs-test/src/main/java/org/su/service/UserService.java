@@ -46,4 +46,6 @@ public interface UserService{
 
     List<User> queryFollowedBloggers(String username);
 
+    int addFollow(int blogId,String username);
+
 }

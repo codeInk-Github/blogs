@@ -13,6 +13,7 @@
     <bean id="UserServiceImpl" class="org.su.service.impl.UserServiceImpl">
         <property name="userMapper" ref="userMapper"/>
         <property name="followersMapper" ref="followersMapper"/>
+        <property name="blogsMapper" ref="blogsMapper"/>
     </bean>
     <bean id="AdminServiceImpl" class="org.su.service.impl.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>

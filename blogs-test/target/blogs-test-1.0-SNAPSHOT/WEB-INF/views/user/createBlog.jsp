@@ -104,8 +104,8 @@
                     url: "${pageContext.request.contextPath}/post/save",
                     type: "POST",
                     data: {
-                        blog_content: $('#blog-content').val()
-
+                        blog_content: $('#blog-content').val(),
+                        blog_title: $('#blogTitle').val()
                     },
                     dataType : 'json',
                     success:function (data){

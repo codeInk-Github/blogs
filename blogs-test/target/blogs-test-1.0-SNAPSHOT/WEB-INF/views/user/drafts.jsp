@@ -15,12 +15,12 @@
     <title>编辑博客</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/login.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/login.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="../assets/css/material-dashboard.min.css?v=2.2.2" rel="stylesheet"/>
+<%--    <link href="../assets/css/material-dashboard.min.css?v=2.2.2" rel="stylesheet"/>--%>
     <!-- CSS Just for demo purpose, don't include it in your project --> </head>
 <body>
 <!-- 构造form表单，以便提交数据-->
@@ -70,19 +70,40 @@
         <ul class="list-group">
 
             <div class="list-group-item">
-                <a href="#" style="color:black"><h3 class="list-group-item-heading" style="color:black">
+                <a href="${pageContext.request.contextPath}/edit/${c.blogId}" target="_blank" style="color:black"><h3 class="list-group-item-heading" style="color:black">
                         ${c.blogTitle}</h3></a><span>${fn:substring(c.blogContext,0,30)}
-                <button style="float: right">发布</button>
-                 <button style="float: right">编辑</button>
-                  <button style="float: right">删除</button>
+                <button class="btn-post-blog" value="${c.blogId}" style="float: right">发布</button>
+                <button class="btn-edit-blog" value="${c.blogId}" style="float: right">编辑</button>
+                <button class="btn-delete-blog" value="${c.blogId}" style="float: right">删除</button>
             </span>
-
                 <p style="float: right;margin-right: 100px">
                     发表日期:${c.createTime}</p>
-
             </div>
         </ul>
     </c:forEach>
 </div>
+<script>
+    $(function (){
+        $('.btn-edit-blog').click(function (){
+            var id = $(this).val()
+            window.open("${pageContext.request.contextPath}/edit/"+id,"_blank")
+        });
+        $(".btn-delete-blog").click(function (){
+            var id = $(this).val()
+            $.ajax({
+                url:"${pageContext.request.contextPath}/article/delete/"+id,
+                success:function (data){
+                    if("ok"===data.msg){
+                        window.location.reload();
+                        // $("#div-comments").ajax.reload();
+                        // window.scrollTo(0,$('#comment-div').scrollTop)
+                        // scrollTop: $("#comment-div").offset().top}, 1000);
+                    }
+
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

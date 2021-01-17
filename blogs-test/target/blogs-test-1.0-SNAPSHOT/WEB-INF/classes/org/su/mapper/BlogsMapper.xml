@@ -78,5 +78,9 @@
         select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where blogTitle LIKE CONCAT(CONCAT('%',#{search},'%'))
     </select>
+    <select id="queryCreator" resultType="java.lang.String">
+        select creator from blogtest.blogs where blogId=#{blogId}
+
+    </select>
 
 </mapper>

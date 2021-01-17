@@ -34,7 +34,7 @@ public class AdminController {
         return "admin/Menu";
     }
 
-    @RequestMapping("/admin/login")
+    @RequestMapping("/admin/menu")
     public String Menu(Model model){
         List<Blogs> blogs_selection = blogService.queryBlogsAsSelectionList();
         List<Blogs> blogs_comment = blogService.queryBlogsAsListSortByCommentNums();

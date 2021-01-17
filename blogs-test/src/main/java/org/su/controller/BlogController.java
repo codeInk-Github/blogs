@@ -110,6 +110,32 @@ public class BlogController {
         return jsonObject;
     }
 
+    @RequestMapping("/edit/save")
+    @ResponseBody
+    public JSONObject editSave(@RequestParam("blog_content") String blog_content,@RequestParam("blog_title")
+            String blog_title,HttpSession session) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        // System.out.println(blog_content);
+        System.out.println("成功获取");
+        blogService.updateBlogs(new Blogs(blog_title,blog_content,0,0,(String) session.getAttribute("username"),0));
+        // response.sendRedirect("../post/edit");
+        return jsonObject;
+    }
+
+
+    @RequestMapping("/edit/post")
+    @ResponseBody
+    public JSONObject editPost(@RequestParam("blog_content") String blog_content,@RequestParam("blog_title")
+            String blog_title,HttpSession session) throws IOException {
+        JSONObject jsonObject = new JSONObject();
+        // System.out.println(blog_content);
+        // System.out.println(blog_title);
+        System.out.println("成功获取");
+        blogService.updateBlogs(new Blogs(blog_title,blog_content,0,0,(String) session.getAttribute("username"),1));
+        // model.addAttribute("123",123);
+        // response.sendRedirect("../post/edit");
+        return jsonObject;
+    }
     @RequestMapping("/c/{blogId}")
     @ResponseBody
     public JSONObject post(@RequestParam("text_comment") String text_comment,@RequestParam("annoy") String annoy_view,
@@ -144,6 +170,33 @@ public class BlogController {
         return jsonObject;
     }
 
+    @RequestMapping("/favourite/{blogId}")
+    @ResponseBody
+    public JSONObject favourite(@PathVariable int blogId,HttpSession session){
+        JSONObject jsonObject = new JSONObject();
+        int i = blogService.addFavourite(blogId,(String) session.getAttribute("username"));
+
+        if(i!=0){
+            jsonObject.put("msg","ok");
+        }
+        else jsonObject.put("msg","fail");
+        return jsonObject;
+    }
+
+    @RequestMapping("/follow/{blogId}")
+    @ResponseBody
+    public JSONObject follow(@PathVariable int blogId,HttpSession session){
+        JSONObject jsonObject = new JSONObject();
+        String username = (String) session.getAttribute("username");
+        int i = userService.addFollow(blogId,username);
+
+        if(i!=0){
+            jsonObject.put("msg","ok");
+        }
+        else jsonObject.put("msg","fail");
+        return jsonObject;
+    }
+
     @RequestMapping("/comment/delete/{commentId}")
     @ResponseBody
     public JSONObject deleteComment(@PathVariable int commentId){
@@ -157,13 +210,36 @@ public class BlogController {
         return jsonObject;
     }
 
-    @RequestMapping("/draft")
+    @RequestMapping("/article/delete/{blogId}")
+    @ResponseBody
+    public JSONObject deleteArticle(@PathVariable int blogId){
+        System.out.println(blogId);
+        JSONObject jsonObject = new JSONObject();
+        int i = blogService.deleteBlogs(blogId);
+        if(i!=0){
+            jsonObject.put("msg","ok");
+        }
+        else jsonObject.put("msg","fail");
+        return jsonObject;
+    }
+
+    @RequestMapping("/drafts")
     public String draft(HttpSession session, Model model){
         String username =(String) session.getAttribute("username");
         List<Blogs> blogs = blogService.queryDraftBlogsAsListByCreator(username);
         model.addAttribute("drafts_list",blogs);
         return "user/drafts";
     }
+
+    @RequestMapping("/edit/{blogId}")
+    public String draft(HttpSession session, Model model,@PathVariable int blogId){
+        String username =(String) session.getAttribute("username");
+        Blogs blog = blogService.queryBlogsAsSingle(blogId);
+        model.addAttribute("blog_content",blog);
+        return "user/editBlog";
+    }
+
+
     @RequestMapping("/search")
     public String search(Model model ,String search){
         List<Blogs> blogs = blogService.queryBlogsAsListSearched(search);

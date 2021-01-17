@@ -7,10 +7,29 @@
         values (#{username},#{password},#{headPortrait},#{nickName},#{nickName},#{email},#{telephone},#{favouriteNum},#{fansNum},#{followersNum},#{question},#{answer},#{registerTime})
     </insert>
 
-    <insert id="addFavouriteNums">
-        update blogtest.user set favouriteNum = user.favouriteNum+1 where username=#{username}
-    </insert>
+    <update id="addFavouriteNums">
+        update blogtest.user set favouriteNum = favouriteNum+1 where username=#{username}
+    </update>
 
+    <update id="addFansNum">
+        update blogtest.user set fansNum = fansNum+1 where username=#{username}
+    </update>
+
+    <update id="addFollowersNum">
+        update blogtest.user set followersNum = followersNum+1 where username=#{username}
+    </update>
+
+    <update id="removeFavouriteNums">
+        update blogtest.user set favouriteNum = favouriteNum-1 where username=#{username}
+    </update>
+
+    <update id="removeFansNum">
+        update blogtest.user set fansNum = fansNum-1 where username=#{username}
+    </update>
+
+    <update id="removeFollowersNum">
+        update blogtest.user set followersNum = followersNum-1 where username=#{username}
+    </update>
     <update id="updateUserByUserName">
         update blogtest.user
         set password = #{password},

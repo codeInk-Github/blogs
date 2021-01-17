@@ -43,7 +43,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int deleteBlogs(int blogId) {
-        return 0;
+        return blogsMapper.deleteBlogByBlogId(blogId);
     }
 
     @Override
@@ -142,6 +142,10 @@ public class BlogServiceImpl implements BlogService {
         return favouriteMapper.insert(new Favourite(username,blogId));
     }
 
+    @Override
+    public int updateBlogs(Blogs blog) {
+        return blogsMapper.updateBlog(blog);
+    }
 
 
 }

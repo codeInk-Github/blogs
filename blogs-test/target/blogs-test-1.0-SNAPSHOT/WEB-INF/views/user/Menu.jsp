@@ -78,7 +78,9 @@
                                     <h3 > ${c.blogTitle} </h3>
                                 </a>
                                 <h4 class="list-group-item-heading" style="color:black">${c.blogContext}</h4>
-                                <a href="#" style="float: right">编辑</a>
+                                <c:if test="${username==c.creator}">
+                                    <a href="${pageContext.request.contextPath}/edit/${c.blogId}" style="float: right">编辑</a>
+                                </c:if>
                                 <p  style="float: right;margin-right: 50px">
                                     &nbsp;评论量:&nbsp;${c.commentNums}:</p>
                             </div>

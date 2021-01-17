@@ -61,7 +61,7 @@
         <div class="form-group" >
 
             <div class="col-xs-5">
-                <input style="margin-left: 400px" type="text" class="form-control" name="blogTitle" placeholder="请输入标题">
+                <input style="margin-left: 400px" type="text" class="form-control" name="blogTitle" id="blogTitle" value="${blog_content.blogTitle}">
             </div>
             <div class="col-md-6">
 <%--                <input style="margin-left: 400px"type="button" class="btn btn-info" value="发布" />--%>
@@ -71,9 +71,7 @@
         </div>
 
         <div id="test-editor" >
-            <textarea id="blog-content" name="blog-content"style="display:none;">
-
-            </textarea>
+            <textarea id="blog-content" name="blog-content"style="display:none;">${blog_content.blogContext}</textarea>
         </div>
 
 
@@ -99,12 +97,11 @@
     $(function (){
         $('#btn-blog-save').click(function (){
             $.ajax({
-                url: "${pageContext.request.contextPath}/post/save",
+                url: "${pageContext.request.contextPath}/edit/save",
                 type: "POST",
                 data: {
                     blog_content: $('#blog-content').val(),
                     blog_title: $('#blogTitle').val()
-
                 },
                 dataType : 'json',
                 success:function (data){
@@ -118,10 +115,11 @@
         })
         $('#btn-blog-post').click(function (){
             $.ajax({
-                url: "${pageContext.request.contextPath}/post/post",
+                url: "${pageContext.request.contextPath}/edit/post",
                 type: "POST",
                 data: {
-                    blog_content: $('#blog-content').val()
+                    blog_content: $('#blog-content').val(),
+                    blog_title: $('#blogTitle').val()
                 },
                 dataType : 'json',
                 success:function (data){

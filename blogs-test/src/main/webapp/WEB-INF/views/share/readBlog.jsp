@@ -84,8 +84,8 @@
                     </textarea>
                     <!-- 编辑器的内容 END -->
                 </div>
-                <button class="btn btn-info" style="margin-left: 800px">收藏</button>
-                <button class="btn btn-warning" >关注</button>
+                <button class="btn btn-info" id="btn-favourite" style="margin-left: 800px">收藏</button>
+                <button class="btn btn-warning" id="btn-follow" >关注</button>
 
             </div>
 
@@ -303,6 +303,36 @@
                 dataType: "json",
                 success:function (data){
                     if("ok"===data.msg) {
+                        window.location.reload();
+                        // $("#div-comments").ajax.reload();
+                        // window.scrollTo(0,$('#comment-div').scrollTop)
+                        // scrollTop: $("#comment-div").offset().top}, 1000);
+                    }
+                }
+            })
+        })
+        $('#btn-favourite').click(function (){
+            $.ajax({
+                url:"${pageContext.request.contextPath}/favourite/${blogId}",
+                dataType:"json",
+                success:function (data){
+                    if("ok"===data.msg) {
+                        alert("已收藏");
+                        window.location.reload();
+                        // $("#div-comments").ajax.reload();
+                        // window.scrollTo(0,$('#comment-div').scrollTop)
+                        // scrollTop: $("#comment-div").offset().top}, 1000);
+                    }
+                }
+            })
+        })
+        $('#btn-follow').click(function (){
+            $.ajax({
+                url:"${pageContext.request.contextPath}/follow/${blogId}",
+                dataType:"json",
+                success:function (data){
+                    if("ok"===data.msg){
+                        alert("已关注");
                         window.location.reload();
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)

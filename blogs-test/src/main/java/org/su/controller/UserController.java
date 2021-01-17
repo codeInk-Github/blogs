@@ -135,6 +135,9 @@ public class UserController {
         String username = (String) session.getAttribute("username");
         List<CommentedBlogs> commented_list = blogService.queryCommentsAsListByCommenterId(username);
         model.addAttribute("commented_list",commented_list);
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
+
         return "user/myComments";
     }
     @RequestMapping("/user/myFavourite")
@@ -142,6 +145,8 @@ public class UserController {
         String username = (String) session.getAttribute("username");
         List<Blogs> blogs = blogService.queryMyFavouriteBlogs(username);
         model.addAttribute("favourite_blogs",blogs);
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
         return "user/myFavourite";
     }
 
@@ -150,6 +155,8 @@ public class UserController {
         String username = (String) session.getAttribute("username");
         List<User> userList = userService.queryFollowingBloggers(username);
         model.addAttribute("following_list",userList);
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
         return "user/myFollowing";
     }
 
@@ -158,6 +165,8 @@ public class UserController {
         String username = (String) session.getAttribute("username");
         List<User> userList = userService.queryFollowedBloggers(username);
         model.addAttribute("followed_list",userList);
+        User user = userService.getUserByUserName(username);
+        model.addAttribute("user",user);
         return "user/followingMe";
     }
 

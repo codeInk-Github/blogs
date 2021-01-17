@@ -1,5 +1,6 @@
 package org.su.service.impl;
 
+import org.su.mapper.BlogsMapper;
 import org.su.mapper.FavouriteMapper;
 import org.su.mapper.FollowersMapper;
 import org.su.mapper.UserMapper;
@@ -16,6 +17,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     private FollowersMapper followersMapper;
+    private BlogsMapper blogsMapper;
 
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -23,6 +25,10 @@ public class UserServiceImpl implements UserService {
 
     public void setFollowersMapper(FollowersMapper followersMapper) {
         this.followersMapper=followersMapper;
+    }
+
+    public void setBlogsMapper(BlogsMapper blogsMapper) {
+        this.blogsMapper=blogsMapper;
     }
 
     @Override
@@ -75,6 +81,14 @@ public class UserServiceImpl implements UserService {
             userList.add(user);
         }
         return userList;
+    }
+
+    @Override
+    public int addFollow(int blogId,String username) {
+        String s = blogsMapper.queryCreator(blogId);
+        userMapper.addFollowersNum(username);
+        userMapper.addFansNum(s);
+        return followersMapper.addFollowRecord(s,username);
     }
 
 }
