@@ -6,7 +6,8 @@
   Time: 21:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -93,7 +94,7 @@
             <div class="panel-heading"  style="background: floralwhite">
                 <h3 class="panel-title">评论</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="div-comments">
                 <c:set var = "index" scope = "request" value="0"/>
                 <c:forEach var="c" items="${blog_comment}">
                     <c:set var = "index" scope = "request" value="${index+1}" />
@@ -149,7 +150,7 @@
             </div>
             <div class="panel-body">
                 <c:forEach var="c" items="${blog_recent}">
-                    <li><a href="#">${c.blogTitle}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/a/${c.blogId}" target="_blank">${c.blogTitle}</a></li>
                 </c:forEach>
             </div>
 
@@ -169,6 +170,25 @@
 <script src="${pageContext.request.contextPath}/static/editor.md/lib/prettify.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/static/editor.md/editormd.js"></script>
+
+<script>
+
+    $(function (){
+        window.onload=function(){
+            if(document.body.scrollTop>0){
+                console.log(1);
+                window.scrollTo(0,-1);
+                document.body.scrollTop=0;
+            }
+            window.scrollTo(0,-1);
+            document.body.scrollTop=0;
+        }
+    })
+
+
+</script>
+
+
 
 <script>
         $(document).ready(function () {
@@ -198,6 +218,9 @@
     $(function (){
         $('#btn-comment').click(function (){
             // alert($("input[name='annoy']:checked").val())
+            if($("input[name='annoy']:checked").val()===""){
+                $("input[name='annoy']:checked").val("no")
+            }
             if (""=== $('#text-comment').val())
                 alert("不能提交空白评论")
             else{
@@ -213,8 +236,8 @@
                         console.log(data);
                         if("ok"===data.msg){
 
-                            window.location.reload()
-                            $("#comment-div").scrollIntoView(true);
+                            window.reload()
+                            // $("#comment-div").scrollIntoView(true);
 
                             // console.log(data);
                             // console.log(data.comment);
@@ -241,14 +264,20 @@
             $.ajax({
                 url:"${pageContext.request.contextPath}/comment/delete/${c.commentId}/"+id,
                 dataType: "json",
-                success:function (){
-                    window.location.reload()
+                success:function (data){
+                    if("ok"===data.msg) {
+                        window.location.reload()
+                        // $("#div-comments").ajax.reload();
+                        // window.scrollTo(0,$('#comment-div').scrollTop)
+                        // scrollTop: $("#comment-div").offset().top}, 1000);
+                    }
                 }
             })
         })
     });
 
 </script>
+
 </body>
 </html>
 

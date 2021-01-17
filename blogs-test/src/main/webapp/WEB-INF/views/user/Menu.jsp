@@ -74,7 +74,7 @@
                     <c:forEach items="${blogs_list}" var="c">
                         <ul class="list-group" >
                             <div class="list-group-item">
-                                <a href="${pageContext.request.contextPath}/a/${c.blogId}" style="color:black">
+                                <a href="${pageContext.request.contextPath}/a/${c.blogId}" target="_blank" style="color:black">
                                     <h3 > ${c.blogTitle} </h3>
                                 </a>
                                 <h4 class="list-group-item-heading" style="color:black">${c.blogContext}</h4>
@@ -96,7 +96,6 @@
                             <p>昵称:${blogger.nickName}
                             <p>粉丝:${blogger.fans}
                             <p>关注:${blogger.favourite}
-                            <p>园龄:${blogger.registerTime}
                             <p>邮箱:${blogger.email}
                         </div>
 
