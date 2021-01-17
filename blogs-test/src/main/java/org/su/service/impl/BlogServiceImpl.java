@@ -72,11 +72,13 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int addComment(Comments comment) {
+        blogsMapper.addCommentNum(comment.getBlogId());
         return commentsMapper.insert(comment);
     }
 
     @Override
     public int deleteComments(int comment_id) {
+        blogsMapper.reduceCommentNum(commentsMapper.queryBlogId(comment_id));
         return commentsMapper.deleteByCommentId(comment_id);
     }
 

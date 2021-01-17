@@ -14,4 +14,5 @@ public interface CommentsMapper {
 
     List<Comments> queryCommentsAsListBycommenterId(String username);
 
+    int queryBlogId(int comment_id);
 }

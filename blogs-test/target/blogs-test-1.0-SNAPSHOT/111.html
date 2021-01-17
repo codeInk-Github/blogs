@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刷新页面滚动条复位</title>
+    <style>
+        *{margin: 0;padding:0;}
+        html,body{height: 100%;}
+        .box{
+            width: 50px;
+            height: 3000px;
+            margin: 0 auto;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<p>000000====---- top -----====0000000</p>
+<div class="box"></div>
+<script>
+    $(function (){
+        window.onload=function(){
+            if(document.body.scrollTop>0){
+                console.log(1);
+                window.scrollTo(0,-1);
+                document.body.scrollTop=0;
+            }
+            window.scrollTo(0,-1);
+            document.body.scrollTop=0;
+        }
+    })
+</script>
+</body>
+</html>

@@ -6,6 +6,9 @@
         insert into blogtest.blogs (blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
         values (#{blogTitle},#{blogContext},#{likeNums},#{commentNums},#{creator},#{createTime},#{status});
     </insert>
+    <update id="addCommentNum">
+        update blogtest.blogs set commentNums = commentNums+1 where blogId=#{blogId}
+    </update>
     <update id="updateBlog">
         update blogtest.blogs
         set
@@ -17,6 +20,9 @@
             createTime=#{createTime},
             status=#{status}
         where blogId = #{blogId}
+    </update>
+    <update id="reduceCommentNum">
+        update blogtest.blogs set commentNums = commentNums-1 where blogId=#{blogId}
     </update>
     <delete id="deleteBlogByBlogId">
         delete from blogtest.blogs where blogId=#{blogId}

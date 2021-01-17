@@ -28,4 +28,9 @@ public interface BlogsMapper {
     String queryBlogTitle(int blogId);
 
     List<Blogs> queryBlogsAsListSearched(String search);
+
+    int reduceCommentNum(int blogId);
+
+    int addCommentNum(int blogId);
+
 }

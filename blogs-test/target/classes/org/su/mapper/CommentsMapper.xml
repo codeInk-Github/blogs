@@ -19,4 +19,7 @@
         select commentId, blogId, commenterId, commenterName, commentTime, commentContext, annoy
         from blogtest.comments where commenterId=#{username}
     </select>
+    <select id="queryBlogId" resultType="java.lang.Integer">
+        select blogId from blogtest.comments where commentId=#{comment_id}
+    </select>
 </mapper>
