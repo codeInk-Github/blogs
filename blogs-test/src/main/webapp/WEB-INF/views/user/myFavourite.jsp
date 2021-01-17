@@ -64,6 +64,7 @@
 <div class="col-md-8" style="margin-left: 100px">
     <div class="panel panel-default">
         <div class="panel-heading"  style="background: floralwhite">
+            我的收藏 <span style="float: right">共 ${user.favouriteNum} 篇</span>
         </div>
         <div class="panel-body">
             <table class="table">

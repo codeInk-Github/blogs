@@ -33,7 +33,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" class="active"><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                <li style="margin-left: 50px" class="active"><a href="${pageContext.request.contextPath}/home">首页</a></li>
             </ul>
 
             <form class="navbar-form navbar-collapse" role="search">
@@ -57,10 +57,10 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href='#'>资料修改</a>
+                                <li><a href='${pageContext.request.contextPath}/user/editInfo'>资料修改</a>
                                 <li><a href="${pageContext.request.contextPath}/user/${username}">我的博客</a>
-                                <li><a href="#">我的收藏</a>
-                                <li><a href="#">我的粉丝</a>
+                                <li><a href="${pageContext.request.contextPath}/user/myFavourite">我的收藏</a>
+                                <li><a href="${pageContext.request.contextPath}/user/followed">我的粉丝</a>
                                 <li><a href="${pageContext.request.contextPath}/logout" >退出</a>
                             </ul>
                     </ul>

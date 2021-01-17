@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的收藏</title>
+    <title>我的关注</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/login.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.css" >
@@ -53,10 +53,10 @@
         <li ><a href="${pageContext.request.contextPath}/post/create"><img src="${pageContext.request.contextPath}/static/css/images/writeblog.png"  height="20" />写博客</a></li>
         <li><a href="${pageContext.request.contextPath}/drafts"><img src="${pageContext.request.contextPath}/static/css/images/draft.png"  height="20" />草稿箱</a></li>
         <li ><a href="${pageContext.request.contextPath}/user/editInfo">资料修改</a></li>
-        <li class="active"><a href="${pageContext.request.contextPath}/user/myFavourite">我的收藏</a></li>
+        <li><a href="${pageContext.request.contextPath}/user/myFavourite">我的收藏</a></li>
         <li><a href="${pageContext.request.contextPath}/user/myComments">我的评论</a></li>
         <li><a href="${pageContext.request.contextPath}/user/followed">我的粉丝</a></li>
-        <li><a href="${pageContext.request.contextPath}/user/following">我的关注</a></li>
+        <li  class="active"><a href="${pageContext.request.contextPath}/user/following">我的关注</a></li>
         <li></li>
         <li></li>
     </ul>
@@ -64,7 +64,7 @@
 <div class="col-md-8" style="margin-left: 100px">
     <div class="panel panel-default">
         <div class="panel-heading"  style="background: floralwhite">我的关注
-            <span style="float: right">共 ${user.favourite} 人</span></div>
+            <span style="float: right">共 ${user.followersNum} 人</span></div>
         <div class="panel-body">
             <c:forEach var="c" items="${following_list}">
                 <a  href="#">${c.nickName}</a>

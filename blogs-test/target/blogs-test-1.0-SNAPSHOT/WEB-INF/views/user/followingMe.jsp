@@ -64,7 +64,8 @@
 <div class="col-md-8" style="margin-left: 100px">
     <div class="panel panel-default">
         <div class="panel-heading"  style="background: floralwhite">
-            我的粉丝 <span style="float: right">共 ${user.fans} 人</span></div>
+            我的粉丝 <span style="float: right">共 ${user.fansNum} 人</span>
+        </div>
         <div class="panel-body">
             <c:set var = "index" scope = "request" value="0"/>
             <c:forEach var="c" items="${followed_list}">
