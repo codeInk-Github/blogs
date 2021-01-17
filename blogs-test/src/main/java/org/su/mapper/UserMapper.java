@@ -18,5 +18,8 @@ public interface UserMapper {
 
     User getUserByUserName(String username);
 
+    void addFavouriteNums(String username);
+
+
     // List<User> queryFollowingBloggers(String username);
 }

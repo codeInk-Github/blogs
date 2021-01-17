@@ -21,6 +21,7 @@
         <property name="blogsMapper" ref="blogsMapper"/>
         <property name="commentsMapper" ref="commentsMapper"/>
         <property name="favouriteMapper" ref="favouriteMapper"/>
+        <property name="userMapper" ref="userMapper"/>
     </bean>
 
     <!--3.声明式事物配置-->

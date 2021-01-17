@@ -6,9 +6,15 @@
         insert into blogtest.blogs (blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
         values (#{blogTitle},#{blogContext},#{likeNums},#{commentNums},#{creator},#{createTime},#{status});
     </insert>
+
+    <insert id="addLikeNum">
+        update blogtest.blogs set likeNums=likeNums+1 where blogId=#{blogId}
+    </insert>
+
     <update id="addCommentNum">
-        update blogtest.blogs set commentNums = commentNums+1 where blogId=#{blogId}
+        update blogtest.blogs set commentNums=commentNums+1 where blogId=#{blogId}
     </update>
+
     <update id="updateBlog">
         update blogtest.blogs
         set
@@ -21,9 +27,15 @@
             status=#{status}
         where blogId = #{blogId}
     </update>
+
     <update id="reduceCommentNum">
         update blogtest.blogs set commentNums = commentNums-1 where blogId=#{blogId}
     </update>
+
+    <update id="reduceLikeNum">
+        update blogtest.blogs set likeNums = likeNums-1 where blogId=#{blogId}
+    </update>
+
     <delete id="deleteBlogByBlogId">
         delete from blogtest.blogs where blogId=#{blogId}
     </delete>
@@ -47,21 +59,24 @@
         select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where creator=#{creator};
     </select>
+
     <select id="queryBlogsAsSingle" resultType="org.su.pojo.Blogs">
         select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where blogId=#{blogId}
     </select>
+
     <select id="queryBlogsAsListByCreatorSortByTime" resultType="org.su.pojo.Blogs">
         select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where creator=#{creator} order by createTime desc limit 0,5
     </select>
+
     <select id="queryBlogTitle" resultType="java.lang.String">
         select blogTitle from blogtest.blogs where blogId=#{blogId}
     </select>
+
     <select id="queryBlogsAsListSearched" resultType="org.su.pojo.Blogs">
         select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
         from blogtest.blogs where blogTitle LIKE CONCAT(CONCAT('%',#{search},'%'))
     </select>
-
 
 </mapper>

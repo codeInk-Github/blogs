@@ -26,10 +26,11 @@ create table User
     password             varchar(20),
     headPortrait         varchar(50),
     nickName             varchar(16),
-    email                varchar(20),
+    email                varchar(30),
     telephone            varchar(20),
-    favourite            int,
-    fans                 int,
+    favouriteNum         int,
+    fansNum              int,
+    followersNum         int,
     question             varchar(50),
     answer               varchar(50),
     registerTime         date,
@@ -116,12 +117,15 @@ alter table comments add constraint FK_Reference_1 foreign key (blogId)
 
 
 insert into
-    User(username, password, nickName, email, telephone, favourite, fans,registerTime)
-    values ("zucker","wqbssy1314.","酥酥susu","13127536467@163.com","123456",0,0,"2021-1-1");
+    User(username, password, nickName, email, telephone, favouriteNum, fansNum,followersNum,registerTime)
+    values ("zucker","wqbssy1314.","酥酥susu","13127536467@163.com","123456",0,0,0,"2021-1-1");
 
 insert into
-    User(username, password, nickName, email, telephone, favourite, fans)
-    values ("wqb","123456","酥酥susu","13127536467@163.com","123456",0,0);
+    User(username, password, nickName, email, telephone, favouriteNum, fansNum,followersNum,registerTime)
+    values ("wqb","123456","酥酥susu","13127536467@163.com","123456",0,0,0,"2020-12-11");
+insert into
+    User(username, password, nickName, email, telephone, favouriteNum, fansNum,followersNum,registerTime)
+    values ("ssy","123456","大马猴","1233211234567@163.com","123456",0,0,0,"2020-12-11");
 
 insert into
     blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)

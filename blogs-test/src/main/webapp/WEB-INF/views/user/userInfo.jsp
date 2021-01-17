@@ -97,11 +97,11 @@
                 </tr>
                 <tr >
                     <th>粉丝数</th>
-                    <td>${user.fans}</td>
+                    <td>${user.fansNum}</td>
                 </tr>
                 <tr >
                     <th>关注数</th>
-                    <td>${user.favourite}</td>
+                    <td>${user.favouriteNum}</td>
                 </tr>
                 <tr >
                     <th>邮箱/e-mail</th>

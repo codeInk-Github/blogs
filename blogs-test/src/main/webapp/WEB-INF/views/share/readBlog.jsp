@@ -138,8 +138,8 @@
             </div>
             <div class="panel-body">
                 <p>昵称:${creator_info.nickName}
-                <p>粉丝:${creator_info.fans}
-                <p>关注:${creator_info.favourite}
+                <p>粉丝:${creator_info.fansNum}
+                <p>关注:${creator_info.favouriteNum}
                 <p>邮箱:${creator_info.email}
             </div>
 
@@ -219,43 +219,80 @@
         $('#btn-comment').click(function (){
             // alert($("input[name='annoy']:checked").val())
             if($("input[name='annoy']:checked").val()===""){
-                $("input[name='annoy']:checked").val("no")
-            }
-            if (""=== $('#text-comment').val())
-                alert("不能提交空白评论")
-            else{
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/c/${blog_content.blogId}",
-                    type: "POST",
-                    data: {
-                        text_comment: $("#text-comment").val(),
-                        annoy:$("input[name='annoy']:checked").val()
-                    },
-                    dataType : 'json',
-                    success:function (data){
-                        console.log(data);
-                        if("ok"===data.msg){
+                if (""=== $('#text-comment').val()){
+                    alert("不能提交空白评论")
+                }
+                else{
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/c/${blog_content.blogId}",
+                        type: "POST",
+                        data: {
+                            text_comment: $("#text-comment").val(),
+                            annoy:$("input[name='annoy']:checked").val()
+                        },
+                        dataType : 'json',
+                        success:function (data){
+                            console.log(data);
+                            if("ok"===data.msg){
+                                window.location.reload();
+                                // $("#comment-div").scrollIntoView(true);
 
-                            window.reload()
-                            // $("#comment-div").scrollIntoView(true);
+                                // console.log(data);
+                                // console.log(data.comment);
+                                <%--                            ${blog_comment} ;--%>
+                                <%--                            ${blog_comment}.load(data.comment);--%>
+                                // console.log("点击!!"+$('#text-comment').val());
+                                // console.log($('#check-annoy').attr('checked'));
+                            }
+                            else {
+                                alert("未登录!")
+                                window.location.href='${pageContext.request.contextPath}/login.jsp';
+                            }
+                            <%--window.location.href='${pageContext.request.contextPath}/home'--%>
+                        },
+                        error:function (){
+                            alert("error")
+                        }
+                    })
+                }
+                // $("input[name='annoy']:checked").val()
+            } else {
+                if (""=== $('#text-comment').val()){
+                    alert("不能提交空白评论")
+                }
+                else{
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/c/${blog_content.blogId}",
+                        type: "POST",
+                        data: {
+                            text_comment: $("#text-comment").val(),
+                            annoy:"no"
+                        },
+                        dataType : 'json',
+                        success:function (data){
+                            console.log(data);
+                            if("ok"===data.msg){
+                                window.location.reload();
+                                // $("#comment-div").scrollIntoView(true);
 
-                            // console.log(data);
-                            // console.log(data.comment);
-                            <%--                            ${blog_comment} ;--%>
-                            <%--                            ${blog_comment}.load(data.comment);--%>
-                            // console.log("点击!!"+$('#text-comment').val());
-                            // console.log($('#check-annoy').attr('checked'));
+                                // console.log(data);
+                                // console.log(data.comment);
+                                <%--                            ${blog_comment} ;--%>
+                                <%--                            ${blog_comment}.load(data.comment);--%>
+                                // console.log("点击!!"+$('#text-comment').val());
+                                // console.log($('#check-annoy').attr('checked'));
+                            }
+                            else {
+                                alert("未登录!")
+                                window.location.href='${pageContext.request.contextPath}/login.jsp';
+                            }
+                            <%--window.location.href='${pageContext.request.contextPath}/home'--%>
+                        },
+                        error:function (){
+                            alert("error")
                         }
-                        else {
-                            alert("未登录!")
-                            window.location.href='${pageContext.request.contextPath}/login.jsp';
-                        }
-                        <%--window.location.href='${pageContext.request.contextPath}/home'--%>
-                    },
-                    error:function (){
-                        alert("error")
-                    }
-                })
+                    })
+                }
             }
         })
         $('.comment-delete').click(function() {
@@ -266,7 +303,7 @@
                 dataType: "json",
                 success:function (data){
                     if("ok"===data.msg) {
-                        window.location.reload()
+                        window.location.reload();
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)
                         // scrollTop: $("#comment-div").offset().top}, 1000);

@@ -8,6 +8,8 @@ import java.util.List;
 public interface FavouriteMapper {
 
     int insert(Favourite record);
+
     int countNumsByBlogId(@Param("blogId") String blogId);
+
     List<Integer> getBlogsId(String username);
 }

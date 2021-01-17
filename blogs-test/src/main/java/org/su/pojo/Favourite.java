@@ -5,6 +5,13 @@ public class Favourite {
   private String username;
   private int blogId;
 
+  public Favourite() {
+  }
+
+  public Favourite(String username, int blogId) {
+    this.username = username;
+    this.blogId = blogId;
+  }
 
   public String getUsername() {
     return username;

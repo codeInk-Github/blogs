@@ -33,4 +33,7 @@ public interface BlogsMapper {
 
     int addCommentNum(int blogId);
 
+    int reduceLikeNum(int blogId);
+
+    int addLikeNum(int blogId);
 }

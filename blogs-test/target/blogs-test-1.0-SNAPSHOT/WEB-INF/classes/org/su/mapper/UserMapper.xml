@@ -3,8 +3,12 @@
 <mapper namespace="org.su.mapper.UserMapper">
 
     <insert id="addUser">
-        insert into blogtest.user (username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime)
-        values (#{username},#{password},#{headPortrait},#{nickName},#{nickName},#{email},#{telephone},#{favourite},#{fans},#{question},#{answer},#{registerTime})
+        insert into blogtest.user (username, password, headPortrait, nickName, email, telephone, favouriteNum, fansNum,followersNum, question, answer, registerTime)
+        values (#{username},#{password},#{headPortrait},#{nickName},#{nickName},#{email},#{telephone},#{favouriteNum},#{fansNum},#{followersNum},#{question},#{answer},#{registerTime})
+    </insert>
+
+    <insert id="addFavouriteNums">
+        update blogtest.user set favouriteNum = user.favouriteNum+1 where username=#{username}
     </insert>
 
     <update id="updateUserByUserName">
@@ -14,8 +18,9 @@
             nickName = #{nickName},
             email = #{email},
             telephone = #{telephone},
-            favourite = #{favourite},
-            fans = #{fans},
+            favouriteNum = #{favouriteNum},
+            fansNum = #{fansNum},
+            followersNum = #{followersNum},
             question = #{question},
             answer = #{answer},
             registerTime = #{registerTime}
@@ -27,18 +32,18 @@
     </delete>
 
     <select id="getUser" resultType="org.su.pojo.User">
-        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        select username, password, headPortrait, nickName, email, telephone,  favouriteNum, fansNum,followersNum, question, answer, registerTime
         from blogtest.user
         where username = #{username} and password = #{password}
     </select>
 
     <select id="queryAll" resultType="org.su.pojo.User">
-        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        select username, password, headPortrait, nickName, email, telephone,  favouriteNum, fansNum,followersNum,question, answer, registerTime
         from blogtest.user where true
     </select>
 
     <select id="getUserByUserName" resultType="org.su.pojo.User">
-        select username, password, headPortrait, nickName, email, telephone, favourite, fans, question, answer, registerTime
+        select username, password, headPortrait, nickName, email, telephone,  favouriteNum, fansNum,followersNum,question, answer, registerTime
         from blogtest.user where username=#{username}
     </select>
 

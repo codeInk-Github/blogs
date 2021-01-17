@@ -3,9 +3,11 @@ package org.su.service.impl;
 import org.su.mapper.BlogsMapper;
 import org.su.mapper.CommentsMapper;
 import org.su.mapper.FavouriteMapper;
+import org.su.mapper.UserMapper;
 import org.su.pojo.Blogs;
 import org.su.pojo.CommentedBlogs;
 import org.su.pojo.Comments;
+import org.su.pojo.Favourite;
 import org.su.service.BlogService;
 import org.su.utils.StringUtils;
 
@@ -16,6 +18,7 @@ public class BlogServiceImpl implements BlogService {
     private BlogsMapper blogsMapper;
     private CommentsMapper commentsMapper;
     private FavouriteMapper favouriteMapper;
+    private UserMapper userMapper;
 
     public void setFavouriteMapper(FavouriteMapper favouriteMapper) {
         this.favouriteMapper=favouriteMapper;
@@ -27,6 +30,10 @@ public class BlogServiceImpl implements BlogService {
 
     public void setCommentsMapper(CommentsMapper commentsMapper) {
         this.commentsMapper = commentsMapper;
+    }
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper=userMapper;
     }
 
     @Override
@@ -128,6 +135,13 @@ public class BlogServiceImpl implements BlogService {
     public List<Blogs> queryBlogsAsListSearched(String search) {
         return blogsMapper.queryBlogsAsListSearched(search);
     }
+
+    @Override
+    public int addFavourite(int blogId, String username) {
+        userMapper.addFavouriteNums(username);
+        return favouriteMapper.insert(new Favourite(username,blogId));
+    }
+
 
 
 }
