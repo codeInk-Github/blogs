@@ -1,5 +1,6 @@
 package org.su.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpRequest;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.su.pojo.Admin;
 import org.su.pojo.Blogs;
 import org.su.pojo.User;
@@ -107,12 +109,13 @@ public class AdminController {
         return "admin/manageBlogs";
     }
 
-    @RequestMapping("/admin/update/{password}/{nickName}/{email}/{telephone}/{question}/{answer}")
-    public String updateUser(HttpSession session, @PathVariable String password,@PathVariable String nickName,
+    @RequestMapping("/admin/update/{username}/{password}/{nickName}/{email}/{telephone}/{question}/{answer}")
+    @ResponseBody
+    public JSONObject updateUser(@PathVariable String username,@PathVariable String password,@PathVariable String nickName,
                              @PathVariable String email,@PathVariable String telephone,@PathVariable String question,
                              @PathVariable String answer, Model model){
-        String username = (String) session.getAttribute("username");
         User user = userService.getUserByUserName(username);
+        System.out.println(username+","+password+","+nickName+","+email+","+telephone+",");
         if(!"".equals(password)){
             user.setPassword(password);
         }
@@ -131,9 +134,12 @@ public class AdminController {
         if(!"".equals(answer)){
             user.setAnswer(answer);
         }
+        System.out.println("ok!");
         userService.updateUserByUserName(user);
         model.addAttribute("user",user);
-        return "user/modifyInfo";
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("msg","ok");
+        return jsonObject;
     }
 
 

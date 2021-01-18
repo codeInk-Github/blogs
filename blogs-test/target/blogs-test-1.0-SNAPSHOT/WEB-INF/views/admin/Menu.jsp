@@ -123,7 +123,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" style="background: floralwhite">
-                <h3 class="panel-title">点赞排行榜</h3>
+                <h3 class="panel-title">收藏排行榜</h3>
             </div>
             <div class="panel-body">
                 <c:forEach var="c" items="${blogs_like}">

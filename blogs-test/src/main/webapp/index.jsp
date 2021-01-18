@@ -118,7 +118,7 @@
                         class="list-group-item-heading" style="color:black">
                         ${c.blogTitle}</h3></a><span>${fn:substring(c.blogContext,0,30)}</span>...
                 <p style="float: right;margin-right: 50px">
-                    评论量:${c.commentNums}发表日期:${fn:substring(c.createTime,0,10)}</p>
+                    评论量:${c.commentNums}&nbsp;发表日期:${fn:substring(c.createTime,0,10)}</p>
             </div>
         </ul>
     </c:forEach>
@@ -140,7 +140,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" style="background: floralwhite">
-                <h3 class="panel-title">点赞排行榜</h3>
+                <h3 class="panel-title">收藏排行榜</h3>
             </div>
             <div class="panel-body">
                 <c:forEach var="c" items="${blogs_like}">

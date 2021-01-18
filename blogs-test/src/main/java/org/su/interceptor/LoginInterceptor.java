@@ -27,7 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         // request.getRequestDispatcher("/login.jsp").forward(request,response);
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect("/blogs/login.jsp");
         // System.out.println("请求不合法");
         return false;
     }

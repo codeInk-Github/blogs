@@ -101,6 +101,10 @@
                 </tr>
                 <tr >
                     <th>关注数</th>
+                    <td>${user.followersNum}</td>
+                </tr>
+                <tr >
+                    <th>收藏数</th>
                     <td>${user.favouriteNum}</td>
                 </tr>
                 <tr >

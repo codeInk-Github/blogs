@@ -32,7 +32,6 @@
                 <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
-
             </ul>
             <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
                 <div class="form-group">
@@ -50,7 +49,7 @@
             <h3 class="panel-title">修改信息</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/user/update" style="margin-top: 20px;margin-left: 10px">
+            <form class="form-horizontal" role="form" action="#" style="margin-top: 20px;margin-left: 10px">
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-8">
@@ -96,14 +95,36 @@
                     </div>
                 </div>
 
-                <input style="margin-left: 400px" type="submit" class="btn btn-info" value="保存">
-
-
+                <input style="margin-left: 400px" type="button" id="btn-save-info" class="btn btn-info" value="保存">
 
             </form>
         </div>
     </div>
 </div>
+<script>
+    $(function (){
+        $("#btn-save-info").click(function (){
+            console.log("${pageContext.request.contextPath}/admin/update/"+$('input[name=username]').val()+"/"
+                +$('input[name=password]').val()+"/"
+                +$('input[name=nickName]').val()+"/"+$('input[name=email]').val()+"/"
+                +$('input[name=telephone]').val()+"/"+$('input[name=question]').val()+"/"
+                +$('input[name=answer]').val())
+            $.ajax({
+                url:"${pageContext.request.contextPath}/admin/update/"+$('input[name=username]').val()+"/"
+                    +$('input[name=password]').val()+"/"
+                    +$('input[name=nickName]').val()+"/"+$('input[name=email]').val()+"/"
+                    +$('input[name=telephone]').val()+"/"+$('input[name=question]').val()+"/"
+                    +$('input[name=answer]').val(),
+                dataType:"json",
+                success:function (data){
+                    if ("okdata.msg)
+                    alert(url);
+                    window.location.onload();
+                }
 
+            })
+        })
+    })
+</script>
 </body>
 </html>

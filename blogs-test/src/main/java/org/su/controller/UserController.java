@@ -122,13 +122,16 @@ public class UserController {
     }
 
 
-    @RequestMapping("/user/update/{password}/{nickName}/{email}/{telephone}/{question}/{answer}")
-    @ResponseBody
-    public JSONObject updateUser(HttpSession session, @PathVariable String password, @PathVariable String nickName,
-                                 @PathVariable String email, @PathVariable String telephone, @PathVariable String question,
-                                 @PathVariable String answer, Model model){
+    @RequestMapping("/user/update")
+    public String updateUser(HttpSession session, Model model,HttpServletRequest request){
         String username = (String) session.getAttribute("username");
         User user = userService.getUserByUserName(username);
+        String password = request.getParameter("password");
+        String nickName = request.getParameter("nickName");
+        String email = request.getParameter("email");
+        String telephone = request.getParameter("telephone");
+        String question = request.getParameter("question");
+        String answer = request.getParameter("answer");
         if(!"".equals(password)){
             user.setPassword(password);
         }
@@ -151,7 +154,7 @@ public class UserController {
         model.addAttribute("user",user);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("msg","ok");
-        return jsonObject;
+        return "user/modifyInfo";
     }
 
 

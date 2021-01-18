@@ -97,7 +97,8 @@
                         <div class="panel-body">
                             <p>昵称:${blogger.nickName}
                             <p>粉丝:${blogger.fansNum}
-                            <p>关注:${blogger.favouriteNum}
+                            <p>关注:${blogger.followersNum}
+                            <p>收藏:${blogger.favouriteNum}
                             <p>邮箱:${blogger.email}
                         </div>
 

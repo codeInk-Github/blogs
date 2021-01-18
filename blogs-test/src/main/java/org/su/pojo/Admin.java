@@ -11,6 +11,18 @@ public class Admin {
   private String email;
   private String description;
 
+  @Override
+  public String toString() {
+    return "Admin{" +
+            "adminname='" + adminname + '\'' +
+            ", adminpassword='" + adminpassword + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", realname='" + realname + '\'' +
+            ", telephone='" + telephone + '\'' +
+            ", email='" + email + '\'' +
+            ", description='" + description + '\'' +
+            '}';
+  }
 
   public String getAdminname() {
     return adminname;

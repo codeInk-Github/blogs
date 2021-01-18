@@ -8,7 +8,7 @@
 
     </select>
     <select id="getBlogsId" resultType="java.lang.Integer">
-        select username from blogtest.favourite where username=#{username}
+        select blogId from blogtest.favourite where username=#{username}
     </select>
     <select id="queryIfExist" resultType="java.lang.String">
         select username from blogtest.favourite where username=#{username} and blogId=#{blogId}

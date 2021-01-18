@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
                 <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/menu">首页</a></li>
                 <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
 
             </ul>
@@ -51,10 +51,11 @@
     </div>
     <c:forEach var="c" items="${blog_list}">
         <div class="list-group-item">
-            <a href="#" style="color:black"> <h3 class="list-group-item-heading" style="color:black">
+            <a href="${pageContext.request.contextPath}/a/${c.blogId}" style="color:black"> <h3 class="list-group-item-heading" style="color:black">
                     ${c.blogTitle}</h3></a>${c.blogContext}
             <p style="float: right;margin-right: 70px">
-                评论量:${c.commentNums} 发表日期:${c.creator} <a href="#" >删除</a> <a href="#" >修改</a></p>
+                评论量:${c.commentNums} 发表日期:${c.creator} <a href="#" >删除</a> </p>
+<%--                评论量:${c.commentNums} 发表日期:${c.creator} <a href="#" >删除</a> <a href="#" >修改</a></p>--%>
         </div>
 
     </c:forEach>
