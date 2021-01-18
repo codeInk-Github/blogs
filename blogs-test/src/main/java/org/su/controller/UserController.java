@@ -122,6 +122,34 @@ public class UserController {
     }
 
 
+    @RequestMapping("/user/update/")
+    public String updateUser(HttpSession session,HttpServletRequest request, Model model){
+        String username = (String) session.getAttribute("username");
+        User user = userService.getUserByUserName(username);
+        if(!"".equals(request.getParameter("password"))){
+            user.setPassword(request.getParameter("password"));
+        }
+        if(!"".equals(request.getParameter("nickName"))){
+            user.setNickName(request.getParameter("nickName"));
+        }
+        if(!"".equals(request.getParameter("email"))){
+            user.setEmail(request.getParameter("email"));
+        }
+        if(!"".equals(request.getParameter("telephone"))){
+            user.setAnswer(request.getParameter("telephone"));
+        }
+        if(!"".equals(request.getParameter("question"))){
+            user.setQuestion(request.getParameter("question"));
+        }
+        if(!"".equals(request.getParameter("answer"))){
+            user.setPassword(request.getParameter("answer"));
+        }
+        userService.updateUserByUserName(user);
+        model.addAttribute("user",user);
+        return "user/modifyInfo";
+    }
+
+
     @RequestMapping("/user/editInfo")
     public String editInfo(HttpSession session, Model model){
         String username = (String) session.getAttribute("username");

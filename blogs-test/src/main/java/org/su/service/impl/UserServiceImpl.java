@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeUserByUserName(String userName) {
+        blogsMapper.deleteBlogByCreator(userName);
         userMapper.removeUserByUserName(userName);
     }
 
@@ -86,9 +87,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addFollow(int blogId,String username) {
         String s = blogsMapper.queryCreator(blogId);
-        userMapper.addFollowersNum(username);
-        userMapper.addFansNum(s);
-        return followersMapper.addFollowRecord(s,username);
+        int i = followersMapper.addFollowRecord(s, username);
+        if(i!=0){
+            userMapper.addFollowersNum(username);
+            userMapper.addFansNum(s);
+        }
+        return i;
     }
 
 }

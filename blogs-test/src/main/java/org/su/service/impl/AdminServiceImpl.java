@@ -10,20 +10,25 @@ import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
+    private UserMapper userMapper;
 
     public void setAdminMapper(AdminMapper adminMapper) {
         this.adminMapper = adminMapper;
     }
 
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper=userMapper;
+    }
 
     @Override
     public Admin getAdmin(String adminName, String adminPassword) {
-        return null;
+        return adminMapper.getAdmin(adminName,adminPassword);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userMapper.queryAll();
     }
+
 
 }

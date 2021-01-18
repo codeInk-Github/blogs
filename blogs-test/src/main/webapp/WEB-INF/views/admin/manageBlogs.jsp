@@ -29,10 +29,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/Menu">首页</a></li>
-                <li class="active"><a href="#">用户管理 </a></li>
-                <li><a href="#">博客管理</a></li>
-                <li><a href="#">个人信息</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/menu">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
 
             </ul>
             <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
@@ -49,10 +49,10 @@
     <div class="panel panel-default">
         <div class="panel-heading"  style="background: floralwhite">博客列表</div>
     </div>
-    <c:forEach var="c" items="${}">
+    <c:forEach var="c" items="${blog_list}">
         <div class="list-group-item">
             <a href="#" style="color:black"> <h3 class="list-group-item-heading" style="color:black">
-                    ${c.blogTitle}</h3></a>${c.Context}
+                    ${c.blogTitle}</h3></a>${c.blogContext}
             <p style="float: right;margin-right: 70px">
                 评论量:${c.commentNums} 发表日期:${c.creator} <a href="#" >删除</a> <a href="#" >修改</a></p>
         </div>

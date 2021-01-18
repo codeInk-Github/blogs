@@ -36,10 +36,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/Menu">首页</a></li>
-                <li class="active"><a href="#">用户管理 </a></li>
-                <li><a href="#">博客管理</a></li>
-                <li><a href="#">个人信息</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/menu">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
 
             </ul>
             <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
@@ -63,11 +63,14 @@
             <th style="width: 900px">昵称</th>
             <th >操作</th>
         </tr>
-        <c:forEach var="c" items="${}">
+        <c:forEach var="c" items="${user_list}">
             <tr>
                 <td>${c.username}</td>
                 <td style="width: 900px"><a href="#" style="color: black">${c.nickName}</a></td>
-                <td><button>修改信息</button><button>删除信息</button></td>
+                <td>
+                    <a class="btn btn-default" href="${pageContext.request.contextPath}/admin/${c.username}/modifyInfo">修改信息</a> &nbsp;
+                    <a class="btn btn-default" href="${pageContext.request.contextPath}/admin/${c.username}/delete">删除信息</a>
+                </td>
             </tr>
 
         </c:forEach>

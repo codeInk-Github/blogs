@@ -28,10 +28,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/Menu">首页</a></li>
-                <li class="active"><a href="#">用户管理 </a></li>
-                <li><a href="#">博客管理</a></li>
-                <li><a href="#">个人信息</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/admin/menu">首页</a></li>
+                <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
 
             </ul>
             <form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search">
@@ -54,45 +54,45 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="" placeholder="${username}" readonly>
+                        <input type="text" class="form-control" name="username" value="${user.username}" readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"  placeholder="${user.password}">
+                        <input type="text" class="form-control" name="password"  value="${user.password}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">昵称</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="" placeholder="${user.nickName}">
+                        <input type="text" class="form-control" name="nickName" value="${user.nickName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" name="" placeholder="${user.email}">
+                        <input type="email" class="form-control" name="email" value="${user.email}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">电话号码</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="" placeholder="${user.telephone}">
+                        <input type="text" class="form-control" name="telephone" value="${user.telephone}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">密保问题</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"  placeholder="${user.question}">
+                        <input type="text" class="form-control" name="question"  value="${user.question}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">密保答案</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="" placeholder="${user.answer}">
+                        <input type="text" class="form-control" name="answer" value="${user.answer}">
                     </div>
                 </div>
 

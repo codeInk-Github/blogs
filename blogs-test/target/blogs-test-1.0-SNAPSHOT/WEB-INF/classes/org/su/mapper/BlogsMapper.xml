@@ -82,5 +82,9 @@
         select creator from blogtest.blogs where blogId=#{blogId}
 
     </select>
+    <select id="queryBlogsAsListSortByTime" resultType="org.su.pojo.Blogs">
+        select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where TRUE order by createTime desc
+    </select>
 
 </mapper>

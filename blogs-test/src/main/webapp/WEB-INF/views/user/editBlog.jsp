@@ -105,8 +105,11 @@
                 },
                 dataType : 'json',
                 success:function (data){
-                    console.log("点击!!"+this.url+"       "+$('#blog-content').val());
-                    alert("已保存至草稿箱!")
+                    // console.log("点击!!"+this.url+"       "+$('#blog-content').val());
+
+                    alert("已保存至草稿箱!");
+                    window.location.href='${pageContext.request.contextPath}/drafts'
+
                 },
                 error: function (er){
                     console.log("未成功"+this.url+"       "+$('#blog-content').val())

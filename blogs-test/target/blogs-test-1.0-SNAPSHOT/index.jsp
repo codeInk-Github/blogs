@@ -153,6 +153,9 @@
 </div>
 </div>
 </div>
+<div id="footer" style="clear:both;text-align:center;margin-top: 600px">
+    版权  博语平台&nbsp&nbsp<a href="${pageContext.request.contextPath}/adminLogin.jsp">管理员登录</a>
+</div>
 
 <script>
     $(document).ready(function () {

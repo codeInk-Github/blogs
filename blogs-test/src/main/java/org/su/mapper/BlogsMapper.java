@@ -38,4 +38,8 @@ public interface BlogsMapper {
     int reduceLikeNum(int blogId);
 
     int addLikeNum(int blogId);
+
+    List<Blogs> queryBlogsAsListSortByTime();
+
+    void deleteBlogByCreator(String userName);
 }

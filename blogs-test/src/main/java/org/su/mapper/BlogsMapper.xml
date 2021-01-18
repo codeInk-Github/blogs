@@ -39,6 +39,9 @@
     <delete id="deleteBlogByBlogId">
         delete from blogtest.blogs where blogId=#{blogId}
     </delete>
+    <delete id="deleteBlogByCreator">
+        delete from blogtest.blogs where creator=#{userName}
+    </delete>
 
     <select id="queryBlogsAsListSortByLikeNums" resultType="org.su.pojo.Blogs">
         select  blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
@@ -81,6 +84,10 @@
     <select id="queryCreator" resultType="java.lang.String">
         select creator from blogtest.blogs where blogId=#{blogId}
 
+    </select>
+    <select id="queryBlogsAsListSortByTime" resultType="org.su.pojo.Blogs">
+        select blogId, blogTitle, blogContext, likeNums, commentNums, creator, createTime, status
+        from blogtest.blogs where TRUE order by createTime desc
     </select>
 
 </mapper>

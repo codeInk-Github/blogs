@@ -9,4 +9,5 @@ public interface AdminService {
     Admin getAdmin(String adminName, String adminPassword);
 
     List<User> getAllUsers();
+
 }

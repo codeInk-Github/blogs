@@ -110,8 +110,8 @@
                     dataType : 'json',
                     success:function (data){
                         console.log("点击!!"+this.url+"       "+$('#blog-content').val());
-                        alert("已保存至草稿箱!")
-                        window.location.href='${pageContext.request.contextPath}/home'
+                        alert("已保存至草稿箱!");
+                        window.location.href='${pageContext.request.contextPath}/drafts'
                     },
                     error: function (er){
                         console.log("未成功"+this.url+"       "+$('#blog-content').val())
@@ -135,7 +135,7 @@
                     success:function (data){
                         console.log("点击!!"+this.url+"       "+$('#blog-content').val());
                         alert("已发布!")
-                        window.location.href='${pageContext.request.contextPath}/home'
+                        window.location.href='${pageContext.request.contextPath}/user/menu'
 
                     },
                     error: function (er){

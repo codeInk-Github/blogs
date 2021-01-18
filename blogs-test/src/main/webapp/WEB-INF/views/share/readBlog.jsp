@@ -322,6 +322,8 @@
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)
                         // scrollTop: $("#comment-div").offset().top}, 1000);
+                    } else if("已收藏"===data.msg){
+
                     }
                 }
             })

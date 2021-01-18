@@ -128,248 +128,8 @@ insert into
     values ("ssy","123456","大马猴","1233211234567@163.com","123456",0,0,0,"2020-12-11");
 
 insert into
-    blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
-    values("《Machine Learning in Action》 -- 浅谈","# [Jmeter 下载+安装+汉化+版本更新+备份使用（Jmeter 4+版本均适用）](https://www.cnblogs.com/tangbohu2008/p/14273027.html)
-
-**目录**
-
-[一、jdk 的安装](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t0)
-
-[二、官网下载 jmeter 安装 zip 包，直接解压到电脑任意硬盘](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t1)
-
-[三、配置系统环境变量](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t2)
-
-[四、查看 jmeter 成功安装](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t3)
-
-[五、jmeter 汉化](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t4)
-
-[六、jmeter 可用已有的压缩包解压使用](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t5)
-
-[七、新版本更新](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t6)
-
-------
-
-------
-
-# 一、jdk 的安装
-
-首先，需要先安装好jdk8（推荐）或jdk10，点击前往查看我的另一博文：[【jdk】window10：jdk 8下载和安装步骤](https://blog.csdn.net/qq_39720249/article/details/80721719)
-
-------
-
-------
-
-# **二、官网下载 jmeter 安装 zip 包，直接解压到电脑任意硬盘**
-
-（一）jmeter官网地址：https://jmeter.apache.org [点击打开链接](https://jmeter.apache.org/)
-
-![img](https://img-blog.csdn.net/20180706143706792?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-（二）官网直接下载地址：https://jmeter.apache.org/download_jmeter.cgi  [点击打开链接](http://jmeter.apache.org/download_jmeter)
-
-
-
-```
-官网下载版本步骤：
-
-→打开链接：https://jmeter.apache.org/download_jmeter.cgi
-
-→找到：Apache JMeter 4.0 (Requires Java 8 or 9.)
-
-→找到：Binaries
-
-→选中：apache-jmeter-4.0.zip
-
-→点击下载到任意磁盘，解压到英文目录下。
-```
-
-
-
-
-
-![img](https://img-blog.csdn.net/20180706143940882?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-（三）下载压缩包至任意磁盘，直接解压到英文目录下即可，解压后原zip包可以删除。
-
-![img](https://img-blog.csdn.net/2018070614433479?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-------
-
-# **三、配置系统环境变量**
-
-
-
-```
-电脑搜索“高级系统设置”，查看高级系统属性，点击“环境变量”按钮，操作“系统属性”：
-
-（1）设置jmeter解压目录的JMETER_HOME环境变量：
-
-系统属性：
-
-→新建
-
-→变量名：JMETER_HOME
-
-变量值：jmeter安装的路径（浏览目录：定位到jmeter-zip包的解压目录）
-
-→确定。
-
-（2）设置jmeter的bin目录的path环境变量：
-
-系统属性：
-
-→找到一个变量名为path（也可能是Path或PATH）的系统变量
-
-→编辑
-
-→新增变量值：变量值后加一个英文分号“；”，分号后输入jmeter的bin路径（浏览目录：定位到jmeter安装包下的bin目录）
-
-→确定。
-
-（3）设置jmeter的classpath变量：
-
-系统属性：
-
-→找到一个变量名为CLASSPATH的系统变量
-
-→编辑
-
-→变量值后新增：
-
-;%JMETER_HOME%\lib\ext\ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;
-
-→确定。
-
-（4）最后点击所有弹出窗后的“确定”，确认保存所设置的3个系统变量。
-```
-
-
-
-------
-
-------
-
-# **四、查看 jmeter 成功安装**
-
-```
-进入jmeter下的bin目录，点击打开jmeter.bat文件：
-
-
-成功启动jmeter则表示成功安装jmeter，如果出现启动闪退，则将系统环境变量中的变量名为JMETER_HOME的系统变量删除，再启动该文件即可。
-```
-
-
-
-![img](https://img-blog.csdn.net/20180706142236675?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-![img](https://img-blog.csdn.net/20180706142629162?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-------
-
-# **五、jmeter 汉化**
-
-（1）**Jmeter 短期汉化**【默认英文版，修改时才显示中文简体版】：
-
-```
-打开jmeter的jmeter.bat文件，直接转换语言：
-
-→option
-
-→choose language
-
-→Chinese simplified
-```
-
-
-
-
-
-![img](https://img-blog.csdn.net/20180706142641668?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-（2）**Jmeter 长期汉化**（修改后，重启默认为中文简体版）：
-
-```
-修改配置文件 jmeter.properties ，添加以下字段：
-
-language = zh_cn
-```
-
-
-
-![img](https://img-blog.csdnimg.cn/20190929022023388.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5,size_16,color_FFFFFF,t_70)
-
-![img](https://img-blog.csdnimg.cn/20190929005249114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5,size_16,color_FFFFFF,t_70)
-
-------
-
-（3）修改为其他默认语言，点击查看我的另一博文：
-
-[【jmeter】Jmeter 修改启动默认语言：将英文版修改为其他语言版本](https://blog.csdn.net/qq_39720249/article/details/101654970)
-
-------
-
-------
-
-# 六、jmeter 可用已有的压缩包解压使用
-
-
-
-```
-1、我们第一次安装jmeter之后，在使用期间会添加插件，将jmeter部署得更加适用，当你另换一台电脑，
-
-又从头开始安装的话，我想没人乐意。
-
-
-2、其实，已有的jmeter，可以直接打成压缩包，放到另一台电脑上，直接配置好系统环境变量，又可以直接使用了，
-
-之前的插件只要有在这个压缩包里，就可以直接在另一台电脑上使用，完全不需要重装！
-```
-
-
-
-------
-
-------
-
-# 七、新版本更新
-
-```
-1、在使用的时候，如需使用新版本 jmeter，那么就把新版本压缩包下载下来，解压。
-
-
-2、把旧版本的文件名更改一下，再把新版本解压后文件名修改为和旧版本文件名一样，这样就不用修改环境变量了。
-
-
-3、先把旧版本所有文件进行复制，再黏贴到新版本文件中，跳过同名文件进行黏贴，注意：是跳过同名文件。
-
-因为同名文件新版本或许有迭代，所以要使用最新的，这些不要覆盖到。
-
-
-4、跳过同名黏贴后，使用名称排序查看各个目录文件，对于同名文件、不同版本的（尤其是 jar 包），
-
-把旧版本删除，保留新版本文件。
-
-
-5、对于配置文件jmeter.properties、build.xml 文件这些自己有去修改过的，还有 bin 目录下的 report-template 目录，
-
-有修改过报告模板的，则使用复制黏贴，直接覆盖到新版本文件内，沿用旧版本配置。
-
-
-6、测试一下，没问题就大功告成。
-
-
-7、原文件打包压缩保存进 U 盘，万一需要回归则直接解压，改回原文件名，放进原路径下，即可直接使用。
-``",20,24,"wqb","2021-1-1",2);
+    admin(adminname, adminpassword, nickname, realname, telephone, email,question,answer, description, registerTime)
+values ("wqb","123456","wqb","张三","1233211234567","1233211234567@163.com","你好么","还行吧","no","2020-12-11");
 
 insert into
     blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
@@ -795,248 +555,198 @@ ARCHIVE存储引擎只支持INSERT和SELECT操作，不支持UPDATE/DELECT/
 
 insert into
     blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
-    values("Jmeter 下载+安装+汉化+版本更新+备份使用（Jmeter 4+版本均适用）",
-"# [Jmeter 下载+安装+汉化+版本更新+备份使用（Jmeter 4+版本均适用）](https://www.cnblogs.com/tangbohu2008/p/14273027.html)
+    values("IDEA 使用技巧",
+"## IDEA 使用技巧
 
-**目录**
+#### 1、调整字体格式
 
-[一、jdk 的安装](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t0)
+![image-20201120004128405](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208031831.png)
 
-[二、官网下载 jmeter 安装 zip 包，直接解压到电脑任意硬盘](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t1)
+#### 2、注释符出现的位置设置
 
-[三、配置系统环境变量](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t2)
+![image-20201120005317976](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208031826.png)
 
-[四、查看 jmeter 成功安装](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t3)
+#### 3、注释设置颜色
 
-[五、jmeter 汉化](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t4)
+![image-20201120005914331](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208031834.png)
 
-[六、jmeter 可用已有的压缩包解压使用](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t5)
+#### 4、Javadoc 配置模板
 
-[七、新版本更新](https://www.cnblogs.com/tangbohu2008/p/14273027.html#t6)
 
-------
 
-------
+![image-20201208092707142](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208092707.png)
 
-# 一、jdk 的安装
 
-首先，需要先安装好jdk8（推荐）或jdk10，点击前往查看我的另一博文：[【jdk】window10：jdk 8下载和安装步骤](https://blog.csdn.net/qq_39720249/article/details/80721719)
 
-------
+![image-20201208092831177](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208092831.png)
 
-------
 
-# **二、官网下载 jmeter 安装 zip 包，直接解压到电脑任意硬盘**
 
-（一）jmeter官网地址：https://jmeter.apache.org [点击打开链接](https://jmeter.apache.org/)
+![image-20201208092948418](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208092948.png)
 
-![img](https://img-blog.csdn.net/20180706143706792?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-------
 
-（二）官网直接下载地址：https://jmeter.apache.org/download_jmeter.cgi  [点击打开链接](http://jmeter.apache.org/download_jmeter)
 
 
 
-```
-官网下载版本步骤：
 
-→打开链接：https://jmeter.apache.org/download_jmeter.cgi
 
-→找到：Apache JMeter 4.0 (Requires Java 8 or 9.)
 
-→找到：Binaries
 
-→选中：apache-jmeter-4.0.zip
 
-→点击下载到任意磁盘，解压到英文目录下。
-```
+### maven 代码补全
 
+> 再写pom.xml时如果代码无法补全，一个一个敲比较浪费时间。可以这样进行设置补全：
 
+![image-20201120010441025](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208031837.png)
 
+选中本地的，就会将本地的进行补全。
 
+![image-20201120011613886](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208031840.png)
 
-![img](https://img-blog.csdn.net/20180706143940882?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-------
 
-（三）下载压缩包至任意磁盘，直接解压到英文目录下即可，解压后原zip包可以删除。
+## Idea 快捷键
 
-![img](https://img-blog.csdn.net/2018070614433479?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+- 快速复制本行：ctrl+D
+- 快速生成对象：ctrl+alt+v
 
-------
 
-------
 
-# **三、配置系统环境变量**
 
 
+## idea 中java版本问题：
 
-```
-电脑搜索“高级系统设置”，查看高级系统属性，点击“环境变量”按钮，操作“系统属性”：
 
-（1）设置jmeter解压目录的JMETER_HOME环境变量：
 
-系统属性：
+![image-20201221010807737](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201221010807.png)
 
-→新建
-
-→变量名：JMETER_HOME
-
-变量值：jmeter安装的路径（浏览目录：定位到jmeter-zip包的解压目录）
-
-→确定。
-
-（2）设置jmeter的bin目录的path环境变量：
-
-系统属性：
-
-→找到一个变量名为path（也可能是Path或PATH）的系统变量
-
-→编辑
-
-→新增变量值：变量值后加一个英文分号“；”，分号后输入jmeter的bin路径（浏览目录：定位到jmeter安装包下的bin目录）
-
-→确定。
-
-（3）设置jmeter的classpath变量：
-
-系统属性：
-
-→找到一个变量名为CLASSPATH的系统变量
-
-→编辑
-
-→变量值后新增：
-
-;%JMETER_HOME%\lib\ext\ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;
-
-→确定。
-
-（4）最后点击所有弹出窗后的“确定”，确认保存所设置的3个系统变量。
-```
-
-
-
-------
-
-------
-
-# **四、查看 jmeter 成功安装**
-
-```
-进入jmeter下的bin目录，点击打开jmeter.bat文件：
-
-
-成功启动jmeter则表示成功安装jmeter，如果出现启动闪退，则将系统环境变量中的变量名为JMETER_HOME的系统变量删除，再启动该文件即可。
-```
-
-
-
-![img](https://img-blog.csdn.net/20180706142236675?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-![img](https://img-blog.csdn.net/20180706142629162?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-------
-
-# **五、jmeter 汉化**
-
-（1）**Jmeter 短期汉化**【默认英文版，修改时才显示中文简体版】：
-
-```
-打开jmeter的jmeter.bat文件，直接转换语言：
-
-→option
-
-→choose language
-
-→Chinese simplified
-```
-
-
-
-
-
-![img](https://img-blog.csdn.net/20180706142641668?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-
-------
-
-（2）**Jmeter 长期汉化**（修改后，重启默认为中文简体版）：
-
-```
-修改配置文件 jmeter.properties ，添加以下字段：
-
-language = zh_cn
-```
-
-
-
-![img](https://img-blog.csdnimg.cn/20190929022023388.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5,size_16,color_FFFFFF,t_70)
-
-![img](https://img-blog.csdnimg.cn/20190929005249114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NzIwMjQ5,size_16,color_FFFFFF,t_70)
-
-------
-
-（3）修改为其他默认语言，点击查看我的另一博文：
-
-[【jmeter】Jmeter 修改启动默认语言：将英文版修改为其他语言版本](https://blog.csdn.net/qq_39720249/article/details/101654970)
-
-------
-
-------
-
-# 六、jmeter 可用已有的压缩包解压使用
-
-
-
-```
-1、我们第一次安装jmeter之后，在使用期间会添加插件，将jmeter部署得更加适用，当你另换一台电脑，
-
-又从头开始安装的话，我想没人乐意。
-
-
-2、其实，已有的jmeter，可以直接打成压缩包，放到另一台电脑上，直接配置好系统环境变量，又可以直接使用了，
-
-之前的插件只要有在这个压缩包里，就可以直接在另一台电脑上使用，完全不需要重装！
-```
-
-
-
-------
-
-------
-
-# 七、新版本更新
-
-```
-1、在使用的时候，如需使用新版本 jmeter，那么就把新版本压缩包下载下来，解压。
-
-
-2、把旧版本的文件名更改一下，再把新版本解压后文件名修改为和旧版本文件名一样，这样就不用修改环境变量了。
-
-
-3、先把旧版本所有文件进行复制，再黏贴到新版本文件中，跳过同名文件进行黏贴，注意：是跳过同名文件。
-
-因为同名文件新版本或许有迭代，所以要使用最新的，这些不要覆盖到。
-
-
-4、跳过同名黏贴后，使用名称排序查看各个目录文件，对于同名文件、不同版本的（尤其是 jar 包），
-
-把旧版本删除，保留新版本文件。
-
-
-5、对于配置文件jmeter.properties、build.xml 文件这些自己有去修改过的，还有 bin 目录下的 report-template 目录，
-
-有修改过报告模板的，则使用复制黏贴，直接覆盖到新版本文件内，沿用旧版本配置。
-
-
-6、测试一下，没问题就大功告成。
-
-
-7、原文件打包压缩保存进 U 盘，万一需要回归则直接解压，改回原文件名，放进原路径下，即可直接使用。
-``
+![image-20201221010947553](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201221010947.png)
 ",201,215,"zucker","2021-1-5",2);
 
-# blogs(blog_title, blog_context, like_nums, comment_nums, creator, create_time, status)
+insert into
+    blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
+values("IDEA 速度优化",
+       "# Idea 速度优化
+
+
+
+## 1、idea 启动速度优化
+
+
+
+找到安装目录的bin目录，修改 idea64.exe.vmoptions
+
+
+
+![image-20201122185259913](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201122185300.png)
+
+```
+-Xms2048m
+
+-Xmx2048m
+
+-XX:ReservedCodeCacheSize=1024m
+```
+
+
+
+**【截图示例】**
+
+![image-20201122190959127](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201122190959.png)
+
+
+
+
+
+
+
+## 2、idea 取消自动打开项目
+
+
+
+
+
+![image-20201208021707805](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208021707.png)
+
+
+
+
+
+## 3、延长自动保存周期
+
+
+
+![image-20201208021932295](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208021932.png)
+
+
+
+
+
+## 4、设置自动导包
+
+![image-20201208022101527](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208022101.png)
+
+
+
+## 5、取消快速显示doc
+
+![image-20201208091212883](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201208091213.png)",201,215,"zucker","2021-1-5",2);
+
+insert into
+    blogs(blogTitle, blogContext, likeNums, commentNums, creator, createTime, status)
+values("redis",
+       "# redis 安装
+
+
+
+![image-20201203135225898](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203135226.png)
+
+
+
+
+
+![image-20201203135235937](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203135236.png)
+
+
+
+![image-20201203135331619](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203135331.png)
+
+
+
+
+
+![image-20201203135430530](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203135430.png)
+
+
+
+
+
+![image-20201203135510763](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203135510.png)
+
+
+
+![image-20201203140534138](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203140534.png)
+
+
+
+
+
+![image-20201203140630380](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203140630.png)
+
+
+
+
+
+![image-20201203140804241](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203140804.png)
+
+
+
+
+
+
+
+
+
+![123123](https://gitee.com/Zuckerberg_ng/mypicgo/raw/master/img/20201203140948.png)
+",201,215,"zucker","2021-1-5",2);

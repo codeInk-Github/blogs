@@ -43,4 +43,7 @@ public interface BlogService {
     int addFavourite(int blogId, String username);
 
     int updateBlogs(Blogs blog);
+
+    List<Blogs> queryBlogsAsListSortByTime();
+
 }

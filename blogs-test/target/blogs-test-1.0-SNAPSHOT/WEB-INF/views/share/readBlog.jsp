@@ -317,10 +317,13 @@
                 dataType:"json",
                 success:function (data){
                     if("ok"===data.msg) {
+                        alert("已收藏");
                         window.location.reload();
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)
                         // scrollTop: $("#comment-div").offset().top}, 1000);
+                    } else if("已收藏"===data.msg){
+
                     }
                 }
             })
@@ -331,6 +334,7 @@
                 dataType:"json",
                 success:function (data){
                     if("ok"===data.msg){
+                        alert("已关注");
                         window.location.reload();
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)

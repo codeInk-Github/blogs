@@ -138,13 +138,27 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int addFavourite(int blogId, String username) {
-        userMapper.addFavouriteNums(username);
-        return favouriteMapper.insert(new Favourite(username,blogId));
+        int insert = favouriteMapper.insert(new Favourite(username, blogId));
+        if(insert!=0){
+            userMapper.addFavouriteNums(username);
+        }
+        return insert;
     }
 
     @Override
     public int updateBlogs(Blogs blog) {
         return blogsMapper.updateBlog(blog);
+    }
+
+    @Override
+    public List<Blogs> queryBlogsAsListSortByTime() {
+        List<Blogs> blogs = blogsMapper.queryBlogsAsListSortByTime();
+        for (Blogs b:blogs){
+            if(b.getBlogContext().length()>30) {
+                b.setBlogContext(b.getBlogContext().substring(0, 30));
+            }
+        }
+        return blogs;
     }
 
 

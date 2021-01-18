@@ -35,7 +35,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" class="active"><a href="${pageContext.request.contextPath}/admin/Menu">首页</a></li>
+                <li style="margin-left: 50px" class="active"><a href="${pageContext.request.contextPath}/admin/menu">首页</a></li>
                 <li ><a href="${pageContext.request.contextPath}/admin/manageUsers" >用户管理 </a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/manageBlogs">博客管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/modifyInfo">个人信息</a></li>
