@@ -138,11 +138,17 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int addFavourite(int blogId, String username) {
-        int insert = favouriteMapper.insert(new Favourite(username, blogId));
-        if(insert!=0){
-            userMapper.addFavouriteNums(username);
+        Favourite favourite = new Favourite(username, blogId);
+        String s = favouriteMapper.queryIfExist(favourite);
+        if (s==null){
+            int insert = favouriteMapper.insert(favourite);
+            if(insert!=0){
+                userMapper.addFavouriteNums(username);
+            }
+            return 1;
         }
-        return insert;
+
+        return 0;
     }
 
     @Override

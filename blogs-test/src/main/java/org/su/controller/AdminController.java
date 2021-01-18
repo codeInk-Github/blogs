@@ -107,5 +107,34 @@ public class AdminController {
         return "admin/manageBlogs";
     }
 
+    @RequestMapping("/admin/update/{password}/{nickName}/{email}/{telephone}/{question}/{answer}")
+    public String updateUser(HttpSession session, @PathVariable String password,@PathVariable String nickName,
+                             @PathVariable String email,@PathVariable String telephone,@PathVariable String question,
+                             @PathVariable String answer, Model model){
+        String username = (String) session.getAttribute("username");
+        User user = userService.getUserByUserName(username);
+        if(!"".equals(password)){
+            user.setPassword(password);
+        }
+        if(!"".equals(nickName)){
+            user.setNickName(nickName);
+        }
+        if(!"".equals(email)){
+            user.setEmail(email);
+        }
+        if(!"".equals(telephone)){
+            user.setTelephone(telephone);
+        }
+        if(!"".equals(question)){
+            user.setQuestion(question);
+        }
+        if(!"".equals(answer)){
+            user.setAnswer(answer);
+        }
+        userService.updateUserByUserName(user);
+        model.addAttribute("user",user);
+        return "user/modifyInfo";
+    }
+
 
 }

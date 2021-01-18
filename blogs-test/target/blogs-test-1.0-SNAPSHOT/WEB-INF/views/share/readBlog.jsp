@@ -322,8 +322,8 @@
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)
                         // scrollTop: $("#comment-div").offset().top}, 1000);
-                    } else if("已收藏"===data.msg){
-
+                    } else {
+                        alert("不能重复收藏哦~")
                     }
                 }
             })
@@ -339,6 +339,9 @@
                         // $("#div-comments").ajax.reload();
                         // window.scrollTo(0,$('#comment-div').scrollTop)
                         // scrollTop: $("#comment-div").offset().top}, 1000);
+
+                    }else {
+                        alert("不能重复关注哦~")
                     }
                 }
             })

@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <title>欢迎使用问卷小猩</title>
-    <link rel="icon" type="image/x-icon" href="./img/logo.png" />
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/css/images/logo.png" />
     <%--    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
     <style type="text/css">
 
@@ -215,11 +215,11 @@
             </form>
         </div>
         <div class="register-show">
-            <form id="register_form" action="/user/register">
+            <form id="register_form" action="${pageContext.request.contextPath}/user/register">
                 <h2>注册</h2>
                 <input type="text" id="regUsername" name="username" placeholder="请输入用户名" required>
                 <input type="password" id="regPassfirst" name="password" placeholder="请输入密码" required>
-                <input type="password" id="regPasssecond" name="password" placeholder="请重复输入密码" required>
+                <input type="password" id="regPasssecond" placeholder="请重复输入密码" required>
                 <input type="text" id="regQuestion" name="question" placeholder="请输入密保问题" required>
                 <input type="text" id="regAnswer" name="answer" placeholder="请输入密保答案" required>
                 <input type="button" id="register_btn" value="Register">

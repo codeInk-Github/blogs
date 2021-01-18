@@ -11,4 +11,7 @@
     <select id="queryFollowedBloggers" resultType="java.lang.String">
         select bloggerId from blogtest.followers where bloggerId=#{username}
     </select>
+    <select id="queryIfExist" resultType="java.lang.String">
+        select bloggerId from blogtest.followers where bloggerId=#{bloggerId} and fansId=#{fansId}
+    </select>
 </mapper>

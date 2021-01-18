@@ -61,7 +61,7 @@
         <div class="form-group" >
 
             <div class="col-xs-5">
-                <input style="margin-left: 400px" type="text" class="form-control" name="blogTitle" id="blogTitle" value="${blog_content.blogTitle}">
+                <input style="margin-left: 400px" type="text" class="form-control" name="blogTitle" id="blogEditTitle" value="${blog_content.blogTitle}">
             </div>
             <div class="col-md-6">
 <%--                <input style="margin-left: 400px"type="button" class="btn btn-info" value="发布" />--%>
@@ -71,10 +71,8 @@
         </div>
 
         <div id="test-editor" >
-            <textarea id="blog-content" name="blog-content"style="display:none;">${blog_content.blogContext}</textarea>
+            <textarea id="blog-edit-content" name="blog-content"style="display:none;">${blog_content.blogContext}</textarea>
         </div>
-
-
     </form>
 </div>
 </body>
@@ -100,16 +98,15 @@
                 url: "${pageContext.request.contextPath}/edit/save",
                 type: "POST",
                 data: {
-                    blog_content: $('#blog-content').val(),
-                    blog_title: $('#blogTitle').val()
+                    blog_content: $('#blog-edit-content').val(),
+                    blog_title: $('#blogEditTitle').val(),
+                    blog_id:${blog_content.blogId}
                 },
                 dataType : 'json',
                 success:function (data){
                     // console.log("点击!!"+this.url+"       "+$('#blog-content').val());
-
                     alert("已保存至草稿箱!");
                     window.location.href='${pageContext.request.contextPath}/drafts'
-
                 },
                 error: function (er){
                     console.log("未成功"+this.url+"       "+$('#blog-content').val())
@@ -121,13 +118,15 @@
                 url: "${pageContext.request.contextPath}/edit/post",
                 type: "POST",
                 data: {
-                    blog_content: $('#blog-content').val(),
-                    blog_title: $('#blogTitle').val()
+                    blog_content: $('#blog-edit-content').val(),
+                    blog_title: $('#blogEditTitle').val(),
+                    blog_id:${blog_content.blogId}
                 },
                 dataType : 'json',
                 success:function (data){
-                    console.log("点击!!"+this.url+"       "+$('#blog-content').val());
+                    // console.log("点击!!"+this.url+"       "+$('#blog-content').val());
                     alert("已发布!")
+                    window.location.href='${pageContext.request.contextPath}/user/menu';
                 },
                 error: function (er){
                     console.log("未成功"+this.url+"       "+$('#blog-content').val())

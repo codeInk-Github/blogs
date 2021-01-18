@@ -87,10 +87,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addFollow(int blogId,String username) {
         String s = blogsMapper.queryCreator(blogId);
-        int i = followersMapper.addFollowRecord(s, username);
-        if(i!=0){
-            userMapper.addFollowersNum(username);
-            userMapper.addFansNum(s);
+        String s1 = followersMapper.queryIfExist(s, username);
+        int i;
+        if("".equals(s1)){
+            i = followersMapper.addFollowRecord(s, username);
+            if(i!=0){
+                userMapper.addFollowersNum(username);
+                userMapper.addFansNum(s);
+            }
+        } else {
+            i=0;
         }
         return i;
     }

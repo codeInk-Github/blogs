@@ -1,11 +1,14 @@
 package org.su.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.su.pojo.Blogs;
 import org.su.pojo.CommentedBlogs;
 import org.su.pojo.Comments;
@@ -90,12 +93,9 @@ public class UserController {
         return "/user/Menu";
     }
 
-    @RequestMapping("/user/register")
-    public void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        String question = req.getParameter("question");
-        String answer = req.getParameter("answer");
+    @RequestMapping("/user/register/{username}/{password}/{question}/{answer}")
+    public void register(@PathVariable String username,@PathVariable String password,@PathVariable String question,
+                         @PathVariable String answer,HttpServletResponse resp) throws IOException {
         User user = new User(username,password);
         user.setAnswer(answer);
         user.setQuestion(question);
@@ -122,31 +122,36 @@ public class UserController {
     }
 
 
-    @RequestMapping("/user/update/")
-    public String updateUser(HttpSession session,HttpServletRequest request, Model model){
+    @RequestMapping("/user/update/{password}/{nickName}/{email}/{telephone}/{question}/{answer}")
+    @ResponseBody
+    public JSONObject updateUser(HttpSession session, @PathVariable String password, @PathVariable String nickName,
+                                 @PathVariable String email, @PathVariable String telephone, @PathVariable String question,
+                                 @PathVariable String answer, Model model){
         String username = (String) session.getAttribute("username");
         User user = userService.getUserByUserName(username);
-        if(!"".equals(request.getParameter("password"))){
-            user.setPassword(request.getParameter("password"));
+        if(!"".equals(password)){
+            user.setPassword(password);
         }
-        if(!"".equals(request.getParameter("nickName"))){
-            user.setNickName(request.getParameter("nickName"));
+        if(!"".equals(nickName)){
+            user.setNickName(nickName);
         }
-        if(!"".equals(request.getParameter("email"))){
-            user.setEmail(request.getParameter("email"));
+        if(!"".equals(email)){
+            user.setEmail(email);
         }
-        if(!"".equals(request.getParameter("telephone"))){
-            user.setAnswer(request.getParameter("telephone"));
+        if(!"".equals(telephone)){
+            user.setTelephone(telephone);
         }
-        if(!"".equals(request.getParameter("question"))){
-            user.setQuestion(request.getParameter("question"));
+        if(!"".equals(question)){
+            user.setQuestion(question);
         }
-        if(!"".equals(request.getParameter("answer"))){
-            user.setPassword(request.getParameter("answer"));
+        if(!"".equals(answer)){
+            user.setAnswer(answer);
         }
         userService.updateUserByUserName(user);
         model.addAttribute("user",user);
-        return "user/modifyInfo";
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("msg","ok");
+        return jsonObject;
     }
 
 

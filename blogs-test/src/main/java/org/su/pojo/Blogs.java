@@ -41,6 +41,15 @@ public class Blogs {
     this.status = status;
   }
 
+  public Blogs(int blogId, String blogTitle, String blogContext, String creator, int status) {
+    this.blogId = blogId;
+    this.blogTitle = blogTitle;
+    this.blogContext = blogContext;
+    this.creator = creator;
+    this.status = status;
+  }
+
+
   @Override
   public String toString() {
     return "Blogs{" +

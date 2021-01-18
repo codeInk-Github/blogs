@@ -26,7 +26,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
+                <li style="margin-left: 50px" ><a href="${pageContext.request.contextPath}/home">首页</a></li>
                 <li ><a href="${pageContext.request.contextPath}/user/${username}">我的文章 </a></li>
                 <li><a href="${pageContext.request.contextPath}/user/Info">个人信息</a></li>
 

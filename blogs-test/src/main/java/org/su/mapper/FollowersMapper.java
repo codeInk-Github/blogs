@@ -14,4 +14,6 @@ public interface FollowersMapper {
 
     int addFollowRecord(@Param("bloggerId") String bloggerId,@Param("fansId") String fansId);
 
+    String queryIfExist(@Param("bloggerId") String bloggerId,@Param("fansId") String fansId);
+
 }

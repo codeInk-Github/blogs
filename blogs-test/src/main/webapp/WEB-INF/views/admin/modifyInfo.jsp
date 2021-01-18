@@ -50,7 +50,7 @@
             <h3 class="panel-title">修改信息</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" style="margin-top: 20px;margin-left: 10px">
+            <form class="form-horizontal" role="form" action="${pageContext.request.contextPath}/user/update" style="margin-top: 20px;margin-left: 10px">
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-8">

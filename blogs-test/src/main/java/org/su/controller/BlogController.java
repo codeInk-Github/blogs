@@ -52,7 +52,6 @@ public class BlogController {
         User user = userService.getUserByUserName(blogs.getCreator());
         List<Blogs> blog_recent = blogService.queryBlogsAsListByCreatorSortByTime(user.getUsername());
         model.addAttribute("blog_recent",blog_recent);
-
         // System.out.println(comments.toString());
         // System.out.println(blogs.toString());
         // System.out.println(blogs);
@@ -69,18 +68,11 @@ public class BlogController {
 
     @RequestMapping("/post/edit/{blogId}")
     public String edit(Model model){
-
         System.out.println(model.getAttribute("123"));
         return "user/editBlog";
     }
 
 
-    // @RequestMapping("/post/save")
-    // public String save(HttpServletRequest request,HttpServletResponse response){
-    //     String parameter = request.getParameter("inp-content");
-    //     System.out.println(parameter);
-    //     return "user/editBlog";
-    // }
 
     @RequestMapping("/post/save")
     @ResponseBody
@@ -90,7 +82,6 @@ public class BlogController {
         // System.out.println(blog_content);
         System.out.println("成功获取");
         blogService.addBlogs(new Blogs(blog_title,blog_content,0,0,(String) session.getAttribute("username"),0));
-
         // response.sendRedirect("../post/edit");
         return jsonObject;
     }
@@ -98,13 +89,14 @@ public class BlogController {
 
     @RequestMapping("/post/post")
     @ResponseBody
-    public JSONObject post(@RequestParam("blog_content") String blog_content,@RequestParam("blog_title")
-            String blog_title,HttpSession session) throws IOException {
+    public JSONObject post(@RequestParam("blog_content") String blog_content,
+                           @RequestParam("blog_title") String blog_title,
+                           @RequestParam ("blog_id") int blog_id,HttpSession session) throws IOException {
         JSONObject jsonObject = new JSONObject();
         // System.out.println(blog_content);
         // System.out.println(blog_title);
         System.out.println("成功获取");
-        blogService.addBlogs(new Blogs(blog_title,blog_content,0,0,(String) session.getAttribute("username"),1));
+        blogService.updateBlogs(new Blogs(blog_id,blog_title,blog_content,(String) session.getAttribute("username"),0));
         // model.addAttribute("123",123);
         // response.sendRedirect("../post/edit");
         return jsonObject;
@@ -125,15 +117,16 @@ public class BlogController {
 
     @RequestMapping("/edit/post")
     @ResponseBody
-    public JSONObject editPost(@RequestParam("blog_content") String blog_content,@RequestParam("blog_title")
-            String blog_title,HttpSession session) throws IOException {
+    public JSONObject editPost(@RequestParam("blog_content") String blog_content,
+                               @RequestParam("blog_title") String blog_title,
+                               @RequestParam ("blog_id") int blog_id,
+            HttpSession session) throws IOException {
         JSONObject jsonObject = new JSONObject();
         // System.out.println(blog_content);
         // System.out.println(blog_title);
         System.out.println("成功获取");
-        blogService.updateBlogs(new Blogs(blog_title,blog_content,0,0,(String) session.getAttribute("username"),1));
-        // model.addAttribute("123",123);
-        // response.sendRedirect("../post/edit");
+        blogService.updateBlogs(new Blogs(blog_id,blog_title,blog_content,(String) session.getAttribute("username"),1));
+
         return jsonObject;
     }
     @RequestMapping("/c/{blogId}")
@@ -174,8 +167,8 @@ public class BlogController {
     @ResponseBody
     public JSONObject favourite(@PathVariable int blogId,HttpSession session){
         JSONObject jsonObject = new JSONObject();
-        int i = blogService.addFavourite(blogId,(String) session.getAttribute("username"));
-
+        String username = (String) session.getAttribute("username");
+        int i = blogService.addFavourite(blogId,username);
         if(i!=0){
             jsonObject.put("msg","ok");
         }
@@ -189,7 +182,6 @@ public class BlogController {
         JSONObject jsonObject = new JSONObject();
         String username = (String) session.getAttribute("username");
         int i = userService.addFollow(blogId,username);
-
         if(i!=0){
             jsonObject.put("msg","ok");
         }
